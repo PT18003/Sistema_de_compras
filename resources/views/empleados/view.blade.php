@@ -2,6 +2,8 @@
 @section('title','Empleados')
 @section('content')
 <h1>Empleados</h1>
+
+
 <a class="btn btn-primary" href="{{route('empleados.create')}}" role="button">Agregar</a>
 <table class="table table-hover">
     <thead>

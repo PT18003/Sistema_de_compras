@@ -15,6 +15,24 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('areatrabajos.index') }}" :active="request()->routeIs('areatrabajos.index')">
+                        {{ __('Areas') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('departamentos.index') }}" :active="request()->routeIs('departamentos.index')">
+                        {{ __('Departamentos') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('municipios.index') }}" :active="request()->routeIs('municipios.index')">
+                        {{ __('Municipios') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('estadosciviles.index') }}" :active="request()->routeIs('estadosciviles.index')">
+                        {{ __('Estados Civiles') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('generos.index') }}" :active="request()->routeIs('generos.index')">
+                        {{ __('Generos') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
+                        {{ __('Empleados') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

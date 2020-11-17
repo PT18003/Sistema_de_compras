@@ -62,8 +62,7 @@ class Empleados extends Migration
             $table->date('vencimientoContrato')->nullable(false);
             $table->unsignedBigInteger('areatrabajo_id')->unsigned();
             $table->unsignedBigInteger('estadocivil_id')->unsigned();
-            $table->foreign('municipio_id')->references('id')->on('Municipio
-            ');
+            $table->foreign('municipio_id')->references('id')->on('Municipio');
             $table->foreign('genero_id')->references('id')->on('Genero');
             $table->foreign('estadocivil_id')->references('id')->on('EstadoCivil');
             $table->foreign('areatrabajo_id')->references('id')->on('AreaTrabajo');

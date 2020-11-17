@@ -54,15 +54,19 @@ class Empleados extends Migration
             $table->string('nombres',30)->nullable(false);//de tipo string y que no acepte valores nulos
             $table->string('apellidos',30)->nullable(false);
             $table->string('direccion',50)->nullable(false);
-            $table->foreignId('municipio_id')->constrained();
-            $table->foreignId('genero_id')->constrained();
+            $table->unsignedBigInteger('municipio_id')->unsigned();
+            $table->unsignedBigInteger('genero_id')->unsigned();
             $table->string('telefono',8)->nullable(false);
             $table->string('dui',9)->nullable(false);
             $table->decimal('salario',6,2)->nullable(false);
             $table->date('vencimientoContrato')->nullable(false);
-            $table->foreignId('areatrabajo_id')->constrained();
-            $table->foreignId('estadocivil_id')->constrained();
-            //$table->foreign('genero_id')->references('id')->on('Genero');
+            $table->unsignedBigInteger('areatrabajo_id')->unsigned();
+            $table->unsignedBigInteger('estadocivil_id')->unsigned();
+            $table->foreign('municipio_id')->references('id')->on('Municipio
+            ');
+            $table->foreign('genero_id')->references('id')->on('Genero');
+            $table->foreign('estadocivil_id')->references('id')->on('EstadoCivil');
+            $table->foreign('areatrabajo_id')->references('id')->on('AreaTrabajo');
             $table->timestamps();//crea 2 campos en la tabla de fecha creado y fecha actualizado
         });
     }

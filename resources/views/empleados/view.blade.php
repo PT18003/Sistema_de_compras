@@ -15,6 +15,7 @@
             <th scope="col">Genero</th>
             <th scope="col">Telefono</th>
             <th scope="col">Area de trabajo</th>
+            <th scope="col">Usuario</th>
             <th scope="col">Acciones</th>
             
             
@@ -30,6 +31,15 @@
             <td>{{$item->genero->genero}}</td>
             <td>{{$item->telefono}}</td>
             <td>{{$item->areatrabajo->nombreDep}}</td>
+            <td>
+              @if (is_null($item->user))
+              
+              <a href="{{ route('registro',$item->id) }}" class="badge badge-warning">Sin Usuario</a>
+              @else
+              <a href="" class="badge badge-success">Ver Datos</a>
+              @endif
+
+            </td>
             <td>
             <a href="{{route('empleados.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
             <a href="{{route('empleados.destroy',$item)}}"><i class="material-icons md-18">delete</i></a>

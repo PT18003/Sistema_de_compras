@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\EstadoCivilController;
+use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +22,6 @@ use App\Http\Controllers\EstadoCivilController;
 Route::get('/', function () {return view('welcome');})->name('index');
 //del dashboard
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-
 
 /* Se pueden usar el metodo resourse para ahorrar lineas de codigo en una sola 
 pero hay que usar las convecciones que laravel nos da v: */
@@ -84,3 +84,6 @@ Route::middleware(['auth:sanctum', 'verified'])->put('empleados/{empleado}', [Em
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/{empleado}/edit', [EmpleadoController::class,'edit'])->name('empleados.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/delete/{empleado}/', [EmpleadoController::class,'destroy'])->name('empleados.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/view/{empleado}', [EmpleadoController::class,'view'])->name('empleados.view');
+Route::middleware(['auth:sanctum', 'verified'])->get('empleados/registro/{empleado}', [UsuarioController::class,'createIndex'])->name('registro');
+Route::middleware(['auth:sanctum', 'verified'])->post('empleados/registrar',  [UsuarioController::class,'create'])->name('registrar');
+

@@ -14,12 +14,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'a163e43bcb58dcf23cf27f541c2d1261d04d91b2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -480,12 +480,12 @@ private static $installed = array (
     ),
     'laravel/fortify' => 
     array (
-      'pretty_version' => 'v1.7.0',
-      'version' => '1.7.0.0',
+      'pretty_version' => 'v1.7.1',
+      'version' => '1.7.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1a8d5a7017c455491091b87eddb8e8523313af51',
+      'reference' => 'b2430958fa93883ab0e5f0caf486ef3688711608',
     ),
     'laravel/framework' => 
     array (
@@ -507,12 +507,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'a163e43bcb58dcf23cf27f541c2d1261d04d91b2',
     ),
     'laravel/sanctum' => 
     array (

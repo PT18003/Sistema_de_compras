@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
 class Empleado extends Model
 {
     use SoftDeletes;//para borrado logico
@@ -38,5 +39,10 @@ class Empleado extends Model
     public function estadocivil()
     {
         return $this->belongsTo(EstadoCivil::class,'estadocivil_id');
+    }
+    //metodo para recuperar valores del objeto user
+    public function user()
+    {               
+        return $this->hasOne(User::class,'empleado_id');
     }
 }

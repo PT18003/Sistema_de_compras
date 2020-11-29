@@ -10,6 +10,7 @@ use App\Models\AreaTrabajo;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmpleadoCreate;
 
 class EmpleadoController extends Controller
 {
@@ -44,7 +45,7 @@ class EmpleadoController extends Controller
             return response()->json($empleado);
         
     }
-    public function guardar(Request $request)
+    public function guardar(EmpleadoCreate $request)
     {
         $empleado = new Empleado();
         $empleado->nombres=$request->nombres;

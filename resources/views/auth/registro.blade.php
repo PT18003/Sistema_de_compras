@@ -4,7 +4,7 @@
 @section('title','Empleados')
 @section('content')
 
-        <x-jet-validation-errors class="mb-4" />
+        
 
         <form action="{{route('registrar')}}" method="POST">
             @csrf

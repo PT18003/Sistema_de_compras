@@ -16,33 +16,33 @@ class CatalogoController extends Controller
 
     public function destroy(Request $request){
         // dd($request);
-        $delete = DB::table('catalogos')->where(['catalogo_id'=>$request->catalogo])->delete();
+        $delete = DB::table('catalogos')->where(['id'=>$request->catalogo])->delete();
         return redirect()->route('catalogos.index');
     }
 
     public function edit(Request $request){
         $id = (int)$request->catalogo;
-        $catalogo = DB::table('catalogos')->where(['catalogo_id'=>$id])->get();
+        $catalogo = DB::table('catalogos')->where(['id'=>$id])->get();
         return view('catalogo.edit', compact('catalogo'));
     }
 
-    public function actualizar(Request $request){
+    public function actualizar(Request $request, Catalogo $catalogo){
         // dd($request->imagen);
         if($request->hasFile('imagen')){
             $photo = Storage::put('public', $request->imagen);
             $url = Storage::url($photo);
             $fullUrl = asset($url);
-            $update = DB::table('catalogos')->where(['catalogo_id'=>$request->catalogo_id])
+            $update = DB::table('catalogos')->where(['id'=>$request->id])
             ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion, 'imagen'=>$fullUrl]);
         }else{
-            $update = DB::table('catalogos')->where(['catalogo_id'=>$request->catalogo_id])
+            $update = DB::table('catalogos')->where(['id'=>$request->id])
             ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion]);
         }
         return redirect()->route('catalogos.index');
     }
 
     public function create(Request $request){
-        //$delete = DB::table('catalogos')->where(['catalogo_id'=>$request->catalogo_id])->delete();
+        //$delete = DB::table('catalogos')->where(['id'=>$request->id])->delete();
         return view('catalogo.create');
     }
 
@@ -59,6 +59,7 @@ class CatalogoController extends Controller
         $cat->descripcion = $request->descripcion;
         $cat->imagen = $fullUrl;
         $cat->save();
+        return redirect()->route('catalogos.index');
         // dd($request);
     }
 }

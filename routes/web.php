@@ -104,13 +104,11 @@ Route::middleware(['auth:sanctum', 'verified'])->put('articulosProveedores/{arti
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores/{articuloProveedor}/edit', [ArticulosProveedorController::class,'edit'])->name('articulosProveedores.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores/delete/{articuloProveedor}/', [ArticulosProveedorController::class,'destroy'])->name('articulosProveedores.destroy');
 //CATALOGO
-Route::middleware(['auth:sanctum', 'verified'])->get('catalogos', [CatalogoController::class,'index'])->name('catalogos.index');
-Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/create', [CatalogoController::class,'create'])->name('catalogos.create');
-Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/towns/{id}',[CatalogoController::class,'getTowns'])->name('catalogos.getTowns');
-Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/etowns/{catalogo}',[CatalogoController::class,'geteTowns'])->name('catalogos.geteTowns');
-Route::middleware(['auth:sanctum', 'verified'])->post('catalogos',[CatalogoController::class,'guardar'])->name('catalogos.guardar');
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos', [CatalogoController::class,'index'])->name('catalogos.index');//usa
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/create', [CatalogoController::class,'create'])->name('catalogos.create');//usa
+Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/create',[CatalogoController::class,'guardar'])->name('catalogos.guardar');
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/{catalogo}/edit', [CatalogoController::class,'edit'])->name('catalogos.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/delete/{catalogo}/', [CatalogoController::class,'destroy'])->name('catalogos.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/view/{catalogo}', [CatalogoController::class,'view'])->name('catalogos.view');
-Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
+Route::middleware(['auth:sanctum', 'verified'])->put('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
 

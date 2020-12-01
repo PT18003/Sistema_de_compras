@@ -30,9 +30,9 @@ class ArticulosProveedor extends Model
         'tiempoEntrega',
     ];
 
-     public function inventario()
+     public function catalogo()
     {
-        return $this->belongsTo(Inventario::class, 'id_inventario');
+        return $this->belongsTo(Catalogo::class, 'id_catalogo');
     }
 
      public function proveedor()

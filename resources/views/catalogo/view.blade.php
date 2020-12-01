@@ -19,13 +19,13 @@
     <tbody>
         @foreach ($catalogos as $item)
         <tr>
-            <th scope="row">{{$item->catalogo_id}}</th>
+            <th scope="row">{{$item->id}}</th>
             <th scope="row">{{$item->nombre}}</th>
             <th scope="row">{{$item->descripcion}}</th>
             <th scope="row"><img src="{{$item->imagen}}" height="60px" width="60px" alt=""></th>
             <td>
-                <a href="{{route('catalogos.edit',['catalogo'=>$item->catalogo_id])}}"><i class="material-icons md-18">edit</i></a>
-                <a href="{{route('catalogos.destroy',['catalogo'=>$item->catalogo_id])}}"><i class="material-icons md-18">delete</i></a>
+                <a href="{{route('catalogos.edit',['catalogo'=>$item->id])}}"><i class="material-icons md-18">edit</i></a>
+                <a href="{{route('catalogos.destroy',['catalogo'=>$item->id])}}"><i class="material-icons md-18">delete</i></a>
             </td>
         </tr>
         @endforeach

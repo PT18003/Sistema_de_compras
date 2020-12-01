@@ -5,9 +5,10 @@
 <h1>Modificar Catálogo</h1>
 <form action="{{route('catalogos.actualizar')}}" enctype="multipart/form-data" method="POST">
     @csrf<!-- para crear un token oculto por temas de seguridad  -->
+    @method('put')
       <img class="mx-auto" src="{{$catalogo[0]->imagen}}" alt="" height="150px" width="150px">
     <div class="form-row m-6">
-        <input type="text" class="form-control" style="display:none" name="catalogo_id" value="{{$catalogo[0]->catalogo_id}}">
+        <input type="text" class="form-control" style="display:none" name="id" value="{{$catalogo[0]->id}}">
     </div>
     <div class="col m-3">
         <input type="text" class="form-control" name="nombre" value="{{$catalogo[0]->nombre}}">

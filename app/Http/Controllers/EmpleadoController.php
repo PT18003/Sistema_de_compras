@@ -76,7 +76,7 @@ class EmpleadoController extends Controller
         $areatrabajo = AreaTrabajo::all();
         return view('empleados.edit',compact('empleado','municipios','estadocivil','departamentos','generos','areatrabajo'));
     }
-    public function actualizar(Request $request, Empleado $empleado)
+    public function actualizar(EmpleadoCreate $request, Empleado $empleado)
     {
         $empleado->nombres=$request->nombres;
         $empleado->apellidos=$request->apellidos;

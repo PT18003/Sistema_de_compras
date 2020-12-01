@@ -30,4 +30,13 @@ class Proveedor extends Model
     {
         return $this->belongsTo(Municipio::class,'municipio_id');
     }
+    public function catalogo()
+    {
+        return $this->belongsToMany(Catalogo::class,'articulos_proveedores','id_proveedor','id_catalogo');
+    }
+    public function articuloProveedor()
+    {
+        return $this->hasMany(ArticulosProveedor::class,'id_proveedor','id');
+
+    }
 }

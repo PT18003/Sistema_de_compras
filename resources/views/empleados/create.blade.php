@@ -36,7 +36,12 @@
                 <select class="custom-select mr-sm-2" id="estadocivil" name="estadocivil">
                     <option selected>Seleccione</option>
                     @foreach ($estadocivil as $item)
+                    @if (old('estadocivil')==$item->id)
+                    <option value="{{$item->id}}" selected>{{$item->nombreEstado}}</option>
+                    @else
                     <option value="{{$item->id}}">{{$item->nombreEstado}}</option>
+                    @endif
+                    
                     @endforeach 
                 </select>
             </div>
@@ -45,16 +50,29 @@
                 <select class="custom-select mr-sm-2" id="departamento" name="departamento" >
                     <option selected>Seleccione</option>
                     @foreach ($departamentos as $item)
-                    <option value="{{$item->id}}">{{$item->departamento}}</option>
+                    @if (old('departamento')==$item->id)
+                        <option value="{{$item->id}}" selected>{{$item->departamento}}</option>
+                    @else
+                        <option value="{{$item->id}}">{{$item->departamento}}</option>
+                    @endif
+                    
                     @endforeach
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="municipio">Municipio</label>
-                <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
-                    <option selected>Seleccione</option>
-                    <option id="municipio" ></option>
-                </select>
+                    <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
+                        @foreach ($municipios as $item)
+                        <option selected>Seleccione</option>
+                        @if (old('municipio')==$item->id)
+                        <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
+                        @else
+                        <option value="{{$item->id}}">{{$item->municipio}}</option>
+
+                        @endif
+                        @endforeach
+                    </select>
+
             </div>
             <div class="form-group col-md-3">
                 <label for="direccion">Direccion</label>
@@ -81,7 +99,11 @@
                 <select class="custom-select mr-sm-2" id="areatrabajo" name="areatrabajo">
                     <option selected>Seleccione</option>
                     @foreach ($areatrabajo as $item)
-                    <option value="{{$item->id}}">{{$item->nombreDep}}</option>
+                    @if (old('areatrabajo')==$item->id)
+                        <option value="{{$item->id}}" selected>{{$item->nombreDep}}</option>
+                    @else
+                        <option value="{{$item->id}}">{{$item->nombreDep}}</option>
+                    @endif
                     @endforeach
                 </select>
             </div>

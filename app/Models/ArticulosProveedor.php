@@ -30,12 +30,12 @@ class ArticulosProveedor extends Model
         'tiempoEntrega',
     ];
 
-     public function inventario()//funcion o metodo que son para relacionar, usar belongsTo en las tablas hijas.
+     public function inventario()
     {
         return $this->belongsTo(Inventario::class, 'id_inventario');
     }
 
-     public function proveedor()//funcion o metodo que son para relacionar, usar belongsTo en las tablas hijas.
+     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class, 'id_proveedor');
     }

@@ -5,13 +5,14 @@
 
 <h1>Editar Empleado</h1>
 <div class="container">
+    <x-jet-validation-errors class="mb-4" />
     <form action="{{route('empleados.actualizar',$empleado)}}" method="POST" autocomplete="off">
         @csrf<!-- para crear un token oculto por temas de seguridad  -->
         @method('put')
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombres">Nombres</label>
-            <input id="nombres" type="text" class="form-control" value="{{$empleado->nombres}}" name="nombres" placeholder="Nombres ">
+            <input id="nombres" type="text" class="form-control" value="{{$empleado->nombres, old('nombres')}}" name="nombres" placeholder="Nombres ">
             </div>
             <div class="form-group col-md-4">
                 <label for="apellidos">Apellidos</label>
@@ -54,7 +55,11 @@
                 <label for="municipio">Municipio</label>
                 <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
                     <option value=0 selected>Seleccione</option>
-                    <option id="municipio" ></option>
+                   @foreach ($municipios as $item)
+                    <option @if ($item->id==$empleado->municipio->id)
+                        selected
+                    @endif value="{{$item->id}}">{{$item->municipio}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-md-3">

@@ -103,4 +103,9 @@ Route::middleware(['auth:sanctum', 'verified'])->put('articulosProveedores/{arti
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores/{articuloProveedor}/edit', [ArticulosProveedorController::class,'edit'])->name('articulosProveedores.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores/delete/{articuloProveedor}/', [ArticulosProveedorController::class,'destroy'])->name('articulosProveedores.destroy');
 
+//prueba ajax ignorar
+Route::middleware(['auth:sanctum', 'verified'])->get('/departamentos/fetch_data', [DepartamentoController::class,'fetch_data'])->name('departamentos.get_data');
+Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/add_data', [DepartamentoController::class,'add_data'])->name('departamentos.add_data');
+Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/update_data', [DepartamentoController::class,'update_data'])->name('departamentos.update_data');
+Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/delete_data', [DepartamentoController::class,'delete_data'])->name('departamentos.delete_data');
 

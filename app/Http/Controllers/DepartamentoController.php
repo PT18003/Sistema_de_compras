@@ -45,4 +45,54 @@ class DepartamentoController extends Controller
         $departamento->delete();
         return redirect()->route('departamentos.index'); 
     }
+    //aqui no se
+    function fetch_data(Request $request)
+    {
+        
+       
+      
+        if($request->ajax())
+        {
+            $data = Departamento::get();
+            echo json_encode($data);
+        }
+    }
+    function add_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = array(
+                
+                'departamento'=>  $request->departamento
+            );
+            $id = Departamento::insert($data);
+            if($id > 0)
+            {
+                echo '<div class="alert alert-success">Data Inserted</div>';
+            }
+        } 
+    }
+
+    function update_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = array(
+                $request->column_name  =>  $request->column_value
+            );
+            Departamento::where('id', $request->id)
+                ->update($data);
+            echo '<div class="alert alert-success">Data Updated</div>';
+        }
+    }
+
+    function delete_data(Request $request)
+    {
+        if($request->ajax())
+        {
+           Departamento::where('id', $request->id)
+                ->delete();
+            echo '<div class="alert alert-success">Registro borrado</div>';
+        }
+    }
 }

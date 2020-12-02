@@ -36,8 +36,9 @@
                         </tbody>
                     </table>
                     {{ $areastrabajo->links() }}
-                    @endsection
+                    
                 </div>
             </div>
         </div>
     </div>
+@endsection

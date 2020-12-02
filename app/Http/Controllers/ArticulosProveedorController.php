@@ -16,7 +16,7 @@ class ArticulosProveedorController extends Controller
      */
     public function index()
     {
-        $articulosProveedores = ArticulosProveedor::all();
+        $articulosProveedores = ArticulosProveedor::paginate(7);
 
         return view('articulosProveedores.index')
             ->with('articulosProveedores',$articulosProveedores);

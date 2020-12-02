@@ -75,8 +75,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    @endsection
+                    {{ $articulosProveedores->links() }}
+                  
                 </div>
             </div>
         </div>
     </div>
+    @endsection

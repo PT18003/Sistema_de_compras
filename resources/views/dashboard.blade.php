@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Agregar Nuevo Proveedor')
+@section('title','Dashboard')
 @section('content')
        
 <div class="py-12">  

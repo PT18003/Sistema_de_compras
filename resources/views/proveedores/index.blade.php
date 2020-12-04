@@ -14,7 +14,7 @@
             <th scope="col">Correo</th>
             <th scope="col">NIT</th>
             <th scope="col">Monto Minimo</th>
-            
+            <th scope="col">Acciones</th>
             
         </tr>
     </thead>
@@ -32,7 +32,8 @@
             <td>
            <a href="{{route('proveedores.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
             <a href="" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons md-18">delete</i></a>
-            <a id="ver" data-toggle="modal" data-target=""><i class="material-icons md-18">preview</i></a>
+            <a href="{{route('articulosProveedores.index',$item->id)}}"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Productos"><i class="material-icons md-18">add_task</i></span></a>
+            
         </td>
         </tr>
         <!-- Button trigger modal -->

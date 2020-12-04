@@ -27,7 +27,6 @@
                         @else
                             <option value="{{$item->id}}" >{{$item->genero}}</option>
                         @endif
-
                     @endforeach
                 </select>
             </div>
@@ -55,7 +54,6 @@
                     @else
                         <option value="{{$item->id}}">{{$item->departamento}}</option>
                     @endif
-                    
                     @endforeach
                 </select>
             </div>
@@ -63,16 +61,14 @@
                 <label for="municipio">Municipio</label>
                     <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
                         @foreach ($municipios as $item)
-                        <option selected>Seleccione</option>
-                        @if (old('municipio')==$item->id)
-                        <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
-                        @else
-                        <option value="{{$item->id}}">{{$item->municipio}}</option>
-
-                        @endif
+                            <option selected>Seleccione</option>
+                            @if (old('municipio')==$item->id)
+                                <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
+                            @else
+                                <option value="{{$item->id}}">{{$item->municipio}}</option>
+                            @endif
                         @endforeach
                     </select>
-
             </div>
             <div class="form-group col-md-3">
                 <label for="direccion">Direccion</label>

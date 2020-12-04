@@ -12,11 +12,11 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombres">Nombres</label>
-            <input id="nombres" type="text" class="form-control" value="{{$empleado->nombres, old('nombres')}}" name="nombres" placeholder="Nombres ">
+            <input id="nombres" type="text" class="form-control" value="{{old('nombres',$empleado->nombres)}}" name="nombres" placeholder="Nombres ">
             </div>
             <div class="form-group col-md-4">
                 <label for="apellidos">Apellidos</label>
-                <input id="apellidos" type="text" class="form-control"  value="{{$empleado->apellidos}}"name="apellidos" placeholder="Apellidos">
+                <input id="apellidos" type="text" class="form-control"  value="{{old('apellidos',$empleado->apellidos)}}"name="apellidos" placeholder="Apellidos">
             </div>
             <div class="form-group col-md-4">
                 <label for="genero">Genero</label>
@@ -64,23 +64,23 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="direccion">Direccion</label>
-                <input id="direccion" type="text" class="form-control"  value="{{$empleado->direccion}}" name="direccion" placeholder="Direccion: ej. #calle, #pasaje, Av.">
+                <input id="direccion" type="text" class="form-control"  value="{{old('direccion',$empleado->direccion)}}" name="direccion" placeholder="Direccion: ej. #calle, #pasaje, Av.">
             </div>
             <div class="form-group col-md-2">
                 <label for="telefono">Telefono</label>
-                <input id="telefono" type="text" class="form-control"  value="{{$empleado->telefono}}" name="telefono" placeholder="Telefono">
+                <input id="telefono" type="text" class="form-control"  value="{{old('telefono',$empleado->telefono)}}" name="telefono" placeholder="Telefono">
             </div>
             <div class="form-group col-md-2">
                 <label for="dui">DUI</label>
-                <input id="dui" type="text" class="form-control"  value="{{$empleado->dui}}" name="dui" placeholder="DUI, sin guion">
+                <input id="dui" type="text" class="form-control"  value="{{old('dui',$empleado->dui)}}" name="dui" placeholder="DUI, sin guion">
             </div>
             <div class="form-group col-md-2">
                 <label for="salario">Salario</label>
-                <input id="salario" type="number" class="form-control"  value="{{$empleado->salario}}" name="salario" placeholder="Salario USD">
+                <input id="salario" type="number" class="form-control"  value="{{old('salario',$empleado->salario)}}" name="salario" placeholder="Salario USD">
             </div>
             <div class="form-group col-md-2">
                 <label for="vencimientoContrato">Vencimiento de contrato</label>
-                <input id="vencimientoContrato" type="date" class="form-control"  value="{{$empleado->vencimientoContrato}}" name="vencimientoContrato" placeholder="Vencimiento de contrato">
+                <input id="vencimientoContrato" type="date" class="form-control"  value="{{old('vencimientoContrato',$empleado->vencimientoContrato)}}" name="vencimientoContrato" placeholder="Vencimiento de contrato">
             </div>
             <div class="form-group col-md-4">
                 <label for="areatrabajo">Area de trabajo</label>

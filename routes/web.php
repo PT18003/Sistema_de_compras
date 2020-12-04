@@ -113,4 +113,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/{catalogo}/edit'
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/delete/{catalogo}/', [CatalogoController::class,'destroy'])->name('catalogos.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/view/{catalogo}', [CatalogoController::class,'view'])->name('catalogos.view');
 Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
-
+//REQUISICION

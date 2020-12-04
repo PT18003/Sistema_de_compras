@@ -3,7 +3,7 @@
 
 @section('content')
 <h1>Agregar Catálogo</h1>
-<form action="{{route('catalogos.create')}}" enctype="multipart/form-data" method="POST">
+<form action="{{route('catalogos.guardar')}}" enctype="multipart/form-data" method="POST">
 @csrf
     @csrf<!-- para crear un token oculto por temas de seguridad  -->
     <div class="form-row">

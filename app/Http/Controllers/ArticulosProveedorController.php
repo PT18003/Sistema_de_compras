@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Collection;
 use App\Models\ArticulosProveedor;
+use App\Models\Catalogo;
 use Illuminate\Http\Request;
 use App\Models\Inventario;
 use App\Models\Proveedor; 
@@ -14,6 +15,7 @@ class ArticulosProveedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $articulosProveedores = ArticulosProveedor::paginate(7);
@@ -35,98 +37,63 @@ class ArticulosProveedorController extends Controller
         -> with('inventarios',$inventarios)
         -> with('proveedores', $proveedores);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+/*
+    public function index(Proveedor $proveedor)//metodo para cargar los articulos de provedores. 
     {
-        $articulosProveedor = new ArticulosProveedor ();
-        $articulosProveedor->id_inventario=$request->inventario; 
-        $articulosProveedor->id_proveedor=$request->proveedor;
-        $articulosProveedor->codigoArticulo=$request->codigoArticulo;
-        $articulosProveedor->descripcionRol=$request->descripcionRol;
-        $articulosProveedor->fechaInicio=$request->fechaInicio;
-        $articulosProveedor->fechaFinal=$request->fechaFinal;
-        $articulosProveedor->precio=$request->precio;
-        $articulosProveedor->periodoPago=$request->periodoPago;
-        $articulosProveedor->descuento=$request->descuento;
-        $articulosProveedor->tiempoEntrega=$request->tiempoEntrega;
+        $provee=Proveedor::find($proveedor->id)->catalogo;
+        $catalogo = Catalogo::all();
+        $catalogo1 = $catalogo->diff($provee);
+        $articulosProveedores = ArticulosProveedor::where('id_proveedor',$proveedor->id)->get();
+        //return $provee;
+        return view('articulosProveedores.index',compact('catalogo','proveedor','articulosProveedores'));  
+    }*/
+    public function store(Request $request, Proveedor $proveedor) //metodo para agregar catalogo a articulos proveedores
+    {
+        $validatedData = $request->validate([
+            
+            'catalogo' => 'required|exists:catalogos,id',
+        ]);
+        $provee=Proveedor::find($proveedor->id)->catalogo;
+        $catalogos = $request->input('catalogo');
+        $arrayProvee =[];
+        $contador =0;
+        foreach($provee as $item)
+        {
+            $arrayProvee[$contador] =$item->id;
+            $contador=1+$contador;
+            
+        }
+        $resultado = array_diff($catalogos,$arrayProvee);
+        $proveedor->catalogo()->attach($catalogos);
+        return redirect()->route('articulosProveedores.index',[$proveedor->id]);
+    }
+    public function edit(ArticulosProveedor $articuloProveedor)
+    {
+        return view('articulosProveedores.edit',compact('articuloProveedor'));
+    }
+    public function update(Request $request, ArticulosProveedor $articuloProveedor)
+    {
+        $validatedData = $request->validate([
+            'codigoArticulo' =>'required',
+            'fechaInicio'=>'required|date|after:yesterday',
+            'fechaFinal'=>'required|date|after:fechaInicio',
+            'precio'=>'required|numeric|between:0,9999.99|regex:/^\d{1,3}(?:\d\d\d)*(?:.\d{1,2})?$/',
+            'descuento'=>'required|numeric|between:0,9999.99|regex:/^\d{1,3}(?:\d\d\d)*(?:.\d{1,2})?$/',
+            
+        ]);
+        $articuloProveedor->codigoArticulo = $request->codigoArticulo;
+        $articuloProveedor->fechaInicio=$request->fechaInicio;
+        $articuloProveedor->fechaFinal=$request->fechaFinal;
+        $articuloProveedor->precio=$request->precio;
+        $articuloProveedor->descuento=$request->descuento;   
+        $articuloProveedor->save();
 
-
-        $articulosProveedor->save();
-
-        return redirect()->route('articulosProveedores.index');
+        return redirect()->route('articulosProveedores.index',[$articuloProveedor->id_proveedor]);
+    }
+    public function destroy(ArticulosProveedor $articuloProveedor)
+    {
+        $articuloProveedor->delete();
+        return redirect()->route('articulosProveedores.index',[$articuloProveedor->id_proveedor]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ArticulosProveedor  $articulosProveedor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ArticulosProveedor $articulosProveedor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ArticulosProveedor  $articulosProveedor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $inventarios = Inventario::all();
-        $proveedores= Proveedor::all();
-        $articulosProveedor = ArticulosProveedor::find($id);
-        return view('articulosProveedores.edit')
-        -> with('inventarios',$inventarios)
-        -> with('proveedores', $proveedores)
-        -> with('articulosProveedor',$articulosProveedor);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ArticulosProveedor  $articulosProveedor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $articulosProveedor = ArticulosProveedor::find($id);
-        $articulosProveedor->id_inventario=$request->inventario; 
-        $articulosProveedor->id_proveedor=$request->proveedor;
-        $articulosProveedor->codigoArticulo=$request->codigoArticulo;
-        $articulosProveedor->descripcionRol=$request->descripcionRol;
-        $articulosProveedor->fechaInicio=$request->fechaInicio;
-        $articulosProveedor->fechaFinal=$request->fechaFinal;
-        $articulosProveedor->precio=$request->precio;
-        $articulosProveedor->periodoPago=$request->periodoPago;
-        $articulosProveedor->descuento=$request->descuento;
-        $articulosProveedor->tiempoEntrega=$request->tiempoEntrega;
-
-
-        $articulosProveedor->save();
-
-        return redirect()->route('articulosProveedores.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ArticulosProveedor  $articulosProveedor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $articulosProveedor = ArticulosProveedor::find($id);
-        $articulosProveedor->delete();
-        return redirect()->route('articulosProveedores.index');
-    }
 }

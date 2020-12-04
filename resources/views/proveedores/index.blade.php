@@ -10,38 +10,39 @@
                    <h1>Proveedores</h1>
                     <p>  <a class="" href="{{route('proveedores.create')}}" role="button">Agregar.</a></p>
                 </div>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" >id</th>
-                            <th scope="col">Nombres</th>
-                            <th scope="col">Municipio</th>
-                            <th scope="col">Direccion</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">NIT</th>
-                            <th scope="col">Monto Minimo</th>
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($proveedores as $item)
-                        <tr>
-                            <th scope="row" id="ver" data-toggle="modal" data-target="#staticBackdrop">{{$item->id}}</th>
-                            <td>{{$item->nombre}}</td>
-                            <td>{{$item->municipio->municipio}}</td>
-                            <td>{{$item->direccion}}</td>
-                            <td>{{$item->telefono}}</td>
-                            <td>{{$item->correo}}</td>
-                            <td>{{$item->nit}}</td>
-                            <td>{{$item->montoMin}}</td>
-                            <td>
-                          <a href="{{route('proveedores.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
-                            <a href="" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons md-18">delete</i></a>
-                            <a id="ver" data-toggle="modal" data-target=""><i class="material-icons md-18">preview</i></a>
-                        </td>
-                        </tr>
+               <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th scope="col" >id</th>
+                          <th scope="col">Nombres</th>
+                          <th scope="col">Municipio</th>
+                          <th scope="col">Direccion</th>
+                          <th scope="col">Telefono</th>
+                          <th scope="col">Correo</th>
+                          <th scope="col">NIT</th>
+                          <th scope="col">Monto Minimo</th>
+                          <th scope="col">Acciones</th>
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($proveedores as $item)
+                      <tr>
+                          <th scope="row" id="ver" data-toggle="modal" data-target="#staticBackdrop">{{$item->id}}</th>
+                          <td>{{$item->nombre}}</td>
+                          <td>{{$item->municipio->municipio}}</td>
+                          <td>{{$item->direccion}}</td>
+                          <td>{{$item->telefono}}</td>
+                          <td>{{$item->correo}}</td>
+                          <td>{{$item->nit}}</td>
+                          <td>{{$item->montoMin}}</td>
+                          <td>
+                        <a href="{{route('proveedores.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
+                          <a href="" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons md-18">delete</i></a>
+                          <a href="{{route('articulosProveedores.index',$item->id)}}"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Productos"><i class="material-icons md-18">add_task</i></span></a>
+                          
+                      </td>
+                      </tr>
                         <!-- Button trigger modal -->
 
                   
@@ -70,9 +71,10 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $proveedores->links() }}  
-             </div>                     
-        </div>
-    </div> 
-</div>  
+                {{ $proveedores->links() }}
+                </div>
+              </div>
+            </div>
+          </div>  
+    
 @endsection

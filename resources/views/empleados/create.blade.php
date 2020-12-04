@@ -12,78 +12,74 @@
                     <p>  <a class="" href="{{route('empleados.index')}}" role="button">Regresar.</a></p>
                     </div>   
 
-
-                    <div class="">
-                        <x-jet-validation-errors class="mb-4" />
-                        <form action="{{route('empleados.guardar')}}" method="POST">
-                            @csrf
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="nombres">Nombres</label>
-                                <input id="nombres" type="text" value="{{old('nombres')}}" class="form-control" name="nombres" placeholder="Nombres ">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="apellidos">Apellidos</label>
-                                    <input id="apellidos" type="text" value="{{old('apellidos')}}" class="form-control" name="apellidos" placeholder="Apellidos">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="genero">Genero</label>
-                                    <select class="custom-select mr-sm-2" id="genero" name="genero">
-                                        <option selected>Seleccione</option>
-                                        @foreach ($generos as $item)
-                                            @if (old('genero')==$item->id)
-                                                <option value="{{$item->id}}" selected>{{$item->genero}}</option>
-                                            @else
-                                                <option value="{{$item->id}}" >{{$item->genero}}</option>
-                                            @endif
-
-                                        @endforeach
-                                    </select>
-                                </div>
-                              <div class="form-group col-md-3">
-                                    <label for="estadocivil">Estado civil</label>
-                                    <select class="custom-select mr-sm-2" id="estadocivil" name="estadocivil">
-                                        <option selected>Seleccione</option>
-                                        @foreach ($estadocivil as $item)
-                                        @if (old('estadocivil')==$item->id)
-                                        <option value="{{$item->id}}" selected>{{$item->nombreEstado}}</option>
-                                        @else
-                                        <option value="{{$item->id}}">{{$item->nombreEstado}}</option>
-                                        @endif
-                                        
-                                        @endforeach 
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="departamento">Departamento</label>
-                                    <select class="custom-select mr-sm-2" id="departamento" name="departamento" >
-                                        <option selected>Seleccione</option>
-                                        @foreach ($departamentos as $item)
-                                        @if (old('departamento')==$item->id)
-                                            <option value="{{$item->id}}" selected>{{$item->departamento}}</option>
-                                        @else
-                                            <option value="{{$item->id}}">{{$item->departamento}}</option>
-                                        @endif
-                                        
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="municipio">Municipio</label>
-                                        <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
-                                            @foreach ($municipios as $item)
-                                            <option selected>Seleccione</option>
-                                            @if (old('municipio')==$item->id)
-                                            <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
-                                            @else
-                                            <option value="{{$item->id}}">{{$item->municipio}}</option>
-
-                                            @endif
-                                            @endforeach
-                                        </select>
-
-                                </div>
-                                <div class="form-group col-md-3">
+<h1>Agregar Empleado</h1>
+<div class="container">
+    <x-jet-validation-errors class="mb-4" />
+    <form action="{{route('empleados.guardar')}}" method="POST">
+        @csrf
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="nombres">Nombres</label>
+            <input id="nombres" type="text" value="{{old('nombres')}}" class="form-control" name="nombres" placeholder="Nombres ">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="apellidos">Apellidos</label>
+                <input id="apellidos" type="text" value="{{old('apellidos')}}" class="form-control" name="apellidos" placeholder="Apellidos">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="genero">Genero</label>
+                <select class="custom-select mr-sm-2" id="genero" name="genero">
+                    <option selected>Seleccione</option>
+                    @foreach ($generos as $item)
+                        @if (old('genero')==$item->id)
+                            <option value="{{$item->id}}" selected>{{$item->genero}}</option>
+                        @else
+                            <option value="{{$item->id}}" >{{$item->genero}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estadocivil">Estado civil</label>
+                <select class="custom-select mr-sm-2" id="estadocivil" name="estadocivil">
+                    <option selected>Seleccione</option>
+                    @foreach ($estadocivil as $item)
+                    @if (old('estadocivil')==$item->id)
+                    <option value="{{$item->id}}" selected>{{$item->nombreEstado}}</option>
+                    @else
+                    <option value="{{$item->id}}">{{$item->nombreEstado}}</option>
+                    @endif
+                    
+                    @endforeach 
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="departamento">Departamento</label>
+                <select class="custom-select mr-sm-2" id="departamento" name="departamento" >
+                    <option selected>Seleccione</option>
+                    @foreach ($departamentos as $item)
+                    @if (old('departamento')==$item->id)
+                        <option value="{{$item->id}}" selected>{{$item->departamento}}</option>
+                    @else
+                        <option value="{{$item->id}}">{{$item->departamento}}</option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="municipio">Municipio</label>
+                    <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
+                        @foreach ($municipios as $item)
+                            <option selected>Seleccione</option>
+                            @if (old('municipio')==$item->id)
+                                <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
+                            @else
+                                <option value="{{$item->id}}">{{$item->municipio}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+            </div>
+             <div class="form-group col-md-3">
                                     <label for="direccion">Direccion</label>
                                     <input id="direccion" type="text" class="form-control" {{old('direccion')}} name="direccion" placeholder="Direccion: ej. #calle, #pasaje, Av.">
                                 </div>
@@ -122,8 +118,6 @@
                         </form>
                     </div>
                 </div>
-                   
-            </div>
         </div> 
     </div>  
 

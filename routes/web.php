@@ -97,6 +97,8 @@ Route::middleware(['auth:sanctum', 'verified'])->post('proveedores',[ProveedorCo
 Route::middleware(['auth:sanctum', 'verified'])->put('proveedores/{proveedor}', [ProveedorController::class,'update'])->name('proveedores.update');
 Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/{proveedor}/edit', [ProveedorController::class,'edit'])->name('proveedores.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/delete/{proveedor}/', [ProveedorController::class,'destroy'])->name('proveedores.destroy');
+
+
 //Articulos_Proveedores
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores', [ArticulosProveedorController::class,'index'])->name('articulosProveedores.index');
 Route::middleware(['auth:sanctum', 'verified'])->get('articulosProveedores/create', [ArticulosProveedorController::class,'create'])->name('articulosProveedores.create');
@@ -110,6 +112,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/departamentos/fetch_data'
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/add_data', [DepartamentoController::class,'add_data'])->name('departamentos.add_data');
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/update_data', [DepartamentoController::class,'update_data'])->name('departamentos.update_data');
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/delete_data', [DepartamentoController::class,'delete_data'])->name('departamentos.delete_data');
+//Articulos_Proveedores 
+Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/{proveedor}/articulosProveedores', [ArticulosProveedorController::class,'index'])->name('articulosProveedores.index');//mostrar articulos 
+Route::middleware(['auth:sanctum', 'verified'])->put('proveedores/{proveedor}/articulosProveedores',[ArticulosProveedorController::class,'store'])->name('articulosProveedores.store');//agregar articulos
+Route::middleware(['auth:sanctum', 'verified'])->put('proveedores/articulosProveedores/{articuloProveedor}', [ArticulosProveedorController::class,'update'])->name('articulosProveedores.update');//formulario editar
+Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/articulosProveedores/{articuloProveedor}/edit', [ArticulosProveedorController::class,'edit'])->name('articulosProveedores.edit');//vista de editar
+Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/articulosProveedores/delete/{articuloProveedor}/', [ArticulosProveedorController::class,'destroy'])->name('articulosProveedores.destroy');
+
 //CATALOGO
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos', [CatalogoController::class,'index'])->name('catalogos.index');//usa
 Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/create', [CatalogoController::class,'create'])->name('catalogos.create');//usa

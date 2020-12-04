@@ -32,7 +32,7 @@ class Proveedor extends Model
     }
     public function catalogo()
     {
-        return $this->belongsToMany(Catalogo::class,'articulos_proveedores','id_proveedor','id_catalogo');
+        return $this->belongsToMany(Catalogo::class,'articulos_proveedores','id_proveedor','id_catalogo')->withTimestamps();
     }
     public function articuloProveedor()
     {

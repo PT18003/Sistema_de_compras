@@ -8,6 +8,7 @@
             <div class="container card-body ">                  
                 <div class="branding">
                     <h1>Bienvenido <b>{{ Auth::user()->name }}</b></h1>
+                    <a href="{{route('empleados.pdf')}}">Puede descargar una lista de los empleados <b> AQUI</b> </a>
                 
                 </div>   
 

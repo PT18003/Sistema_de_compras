@@ -10,6 +10,7 @@ use App\Http\Controllers\EstadoCivilController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ArticulosProveedorController;
+use App\Http\Controllers\CatalogoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ use App\Http\Controllers\ArticulosProveedorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {return view('welcome');})->name('index');
 //del dashboard
@@ -108,4 +110,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/departamentos/fetch_data'
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/add_data', [DepartamentoController::class,'add_data'])->name('departamentos.add_data');
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/update_data', [DepartamentoController::class,'update_data'])->name('departamentos.update_data');
 Route::middleware(['auth:sanctum', 'verified'])->post('/departamentos/delete_data', [DepartamentoController::class,'delete_data'])->name('departamentos.delete_data');
+//CATALOGO
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos', [CatalogoController::class,'index'])->name('catalogos.index');//usa
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/create', [CatalogoController::class,'create'])->name('catalogos.create');//usa
+Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/create',[CatalogoController::class,'guardar'])->name('catalogos.guardar');
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/{catalogo}/edit', [CatalogoController::class,'edit'])->name('catalogos.edit');
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/delete/{catalogo}/', [CatalogoController::class,'destroy'])->name('catalogos.destroy');
+Route::middleware(['auth:sanctum', 'verified'])->get('catalogos/view/{catalogo}', [CatalogoController::class,'view'])->name('catalogos.view');
+Route::middleware(['auth:sanctum', 'verified'])->put('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
+
+//pdf
+Route::middleware(['auth:sanctum', 'verified'])->get('empleados-list-pdf', [EmpleadoController::class,'exportPdf'])->name('empleados.pdf');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('doc', [EmpleadoController::class,'doc'])->name('doc');
 

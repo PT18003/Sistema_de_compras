@@ -13,7 +13,7 @@
                     </div>   
 
                    
-<div class="container">
+<div class="">
     <x-jet-validation-errors class="mb-4" />
     <form action="{{route('empleados.actualizar',$empleado)}}" method="POST" autocomplete="off">
         @csrf<!-- para crear un token oculto por temas de seguridad  -->

@@ -22,7 +22,7 @@ class CreateProveedoresTable extends Migration
             $table->string('correo',30)->nullable(false);
             $table->string('nit',12)->nullable(false);
             $table->decimal('montoMin',6,2)->nullable(false);
-            $table->integer('tiempoEntrega',2)->nullable(false);
+            $table->integer('tiempoEntrega')->nullable(false);
             $table->integer('periodoPago')->nullable(false);
             $table->timestamps();
 

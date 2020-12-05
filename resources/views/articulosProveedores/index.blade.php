@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('title','Articulos de proveedores')
 @section('content')
-<h1>Articulos de Proveedores</h1>
-<a class="btn btn-primary" href="{{-- {{route('articulosProveedores.index')}} --}}" role="button">Agregar</a>
-<x-jet-validation-errors class="mb-4" />
+
+
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -37,7 +36,8 @@
                 @endforeach
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
-        </form>  
+        </form> 
+        <x-jet-validation-errors class="mb-4" /> 
         </div>
       </div>
       <div class="table-responsive mt-4">

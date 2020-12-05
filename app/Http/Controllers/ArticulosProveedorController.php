@@ -10,15 +10,12 @@ use App\Models\Proveedor;
 
 class ArticulosProveedorController extends Controller
 {
-    public function create()
-    {
-        $inventarios = Inventario::all();
-        $proveedores= Proveedor::all();
-        return view('articulosProveedores.create')
-        -> with('inventarios',$inventarios)
-        -> with('proveedores', $proveedores);
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
     public function index(Proveedor $proveedor)//metodo para cargar los articulos de provedores. 
     {
         $provee=Proveedor::find($proveedor->id)->catalogo;
@@ -28,6 +25,29 @@ class ArticulosProveedorController extends Controller
         //return $provee;
         return view('articulosProveedores.index',compact('catalogo','proveedor','articulosProveedores'));  
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $inventarios = Inventario::all();
+        $proveedores= Proveedor::all();
+        return view('articulosProveedores.create')
+        -> with('inventarios',$inventarios)
+        -> with('proveedores', $proveedores);
+    }
+/*
+    public function index(Proveedor $proveedor)//metodo para cargar los articulos de provedores. 
+    {
+        $provee=Proveedor::find($proveedor->id)->catalogo;
+        $catalogo = Catalogo::all();
+        $catalogo1 = $catalogo->diff($provee);
+        $articulosProveedores = ArticulosProveedor::where('id_proveedor',$proveedor->id)->get();
+        //return $provee;
+        return view('articulosProveedores.index',compact('catalogo','proveedor','articulosProveedores'));  
+    }*/
     public function store(Request $request, Proveedor $proveedor) //metodo para agregar catalogo a articulos proveedores
     {
         $validatedData = $request->validate([

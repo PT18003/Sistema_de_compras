@@ -2,8 +2,17 @@
 @section('title','Editar Empleado')
 @section('content')
 
+<div class="py-12">
+   
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="container card-body ">                  
+                    <div class="branding">
+                   <h1>Editar Empleado</h1>
+                    <p>  <a class="" href="{{route('empleados.index')}}" role="button">Regresar.</a></p>
+                    </div>   
 
-<h1>Editar Empleado</h1>
+                   
 <div class="container">
     <x-jet-validation-errors class="mb-4" />
     <form action="{{route('empleados.actualizar',$empleado)}}" method="POST" autocomplete="off">
@@ -92,9 +101,11 @@
                     @endif value="{{$item->id}}">{{$item->nombreDep}}</option>
                     @endforeach
                 </select>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-</div>
+                   </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+                
 @endsection

@@ -2,8 +2,16 @@
 @section('title','Editar Empleado')
 @section('content')
 
-
-<h1>Editar Proveedor</h1>
+<div class="py-12">  
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="container card-body ">                  
+                <div class="branding">
+                    <h1>Editar Proveedor</h1>
+                    <p>  <a class="" href="{{route('proveedores.index')}}" role="button">Regresar.</a></p>
+                </div>
+                <div class="">
+             
 <div class="container">
     <x-jet-validation-errors class="mb-4" />
     <form action="{{route('proveedores.update',$proveedor)}}" method="POST" autocomplete="off">
@@ -80,7 +88,9 @@
                 <input id="periodoPago" type="number" class="form-control"  value="{{old('periodoPago',$proveedor->periodoPago)}}"name="periodoPago" placeholder="Periodo de Pago (dias)">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+<button type="submit" class="btn btn-primary">Guardar</button>
+    </div> 
 </div>
+  
+</form>  
 @endsection

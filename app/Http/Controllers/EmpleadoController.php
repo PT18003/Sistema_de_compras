@@ -12,6 +12,9 @@ use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpleadoCreate;
 
+use Barryvdh\DomPDF\Facade as PDF;
+
+
 class EmpleadoController extends Controller
 {
     public function create()
@@ -23,6 +26,18 @@ class EmpleadoController extends Controller
         $areatrabajo = AreaTrabajo::all();
         return view('empleados.create',compact('municipios','estadocivil','departamentos','generos','areatrabajo'));
     }
+    public function exportPdf()
+    {
+        $empleados = Empleado::get();
+        $pdf = PDF::loadView('pdf.empleados',compact('empleados'));
+        return $pdf->download('empleados-list.pdf');
+    }
+    public function doc()
+    {
+        $empleados=Empleado::get();
+        return view('pdf.empleados', compact('empleados'));
+    }
+    
 /*     public function getTowns(Request $request,$id)
     {
         if($request->ajax())
@@ -31,6 +46,7 @@ class EmpleadoController extends Controller
             return response()->json($towns);
         }
     } */
+
     public function getTowns(Request $request,$id)
     {
         if($request->ajax())

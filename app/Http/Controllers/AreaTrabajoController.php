@@ -8,7 +8,7 @@ class AreaTrabajoController extends Controller
 {
     public function index()
     {
-        $areastrabajo = AreaTrabajo::paginate(1);
+        $areastrabajo = AreaTrabajo::paginate(7);
         return view('areatrabajos.mostrar', compact('areastrabajo'));
     }
     public function create()

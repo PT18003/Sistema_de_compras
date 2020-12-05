@@ -1,3 +1,4 @@
+
 <x-guest-layout>
     
         <x-slot name="logo">
@@ -41,3 +42,4 @@
         </form>
     
 </x-guest-layout>
+

@@ -89,7 +89,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('empleados/{empleado}/edit'
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/delete/{empleado}/', [EmpleadoController::class,'destroy'])->name('empleados.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/view/{empleado}', [EmpleadoController::class,'view'])->name('empleados.view');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/registro/{empleado}', [UsuarioController::class,'createIndex'])->name('registro');
+Route::middleware(['auth:sanctum', 'verified'])->get('empleados/cambio/{empleado}', [UsuarioController::class,'editIndex'])->name('cambio');
+
 Route::middleware(['auth:sanctum', 'verified'])->post('empleados/registrar',  [UsuarioController::class,'create'])->name('registrar');
+Route::middleware(['auth:sanctum', 'verified'])->post('empleados/editar',  [UsuarioController::class,'edit'])->name('editar');
 //proveedores
 Route::middleware(['auth:sanctum', 'verified'])->get('proveedores', [ProveedorController::class,'index'])->name('proveedores.index');
 Route::middleware(['auth:sanctum', 'verified'])->get('proveedores/create', [ProveedorController::class,'create'])->name('proveedores.create');

@@ -5,22 +5,30 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <div class="container card-body ">                  
+          <x-jet-validation-errors class="mb-4" />
+            <div class="container card-body ">
+              <div class="bg-white  sm:rounded-lg">
+                                
                 <div class="branding">
-                <h1>Crear usuario a Empleado <b>{{$empleado->nombres}}</b></h1>
+                <h1>Realizar Cambios a usuario: <b>{{$empleado->nombres}}</b></h1>
+                <h5>Contraseña y correo.</h5>
                 <p>  <a class="" href="{{route('empleados.index')}}" role="button">Regresar.</a></p>
                 </div>   
-
-                <form action="{{route('registrar')}}" method="POST">
+                  
+                <form action="{{route('editar')}}" method="POST">
                     @csrf
                     <div class="form-row">
+                      <div class="col-md-4 d-none">
+                        <label for="name">Codigo Usuario</label>
+                        <input id="id_user" type="text" class="form-control" name="id_user" placeholder="Nombre" readonly value="{{$empleado->user->id}}">
+                      </div>
                       <div class="col-md-4">
                         <label for="name">Nombre</label>
                       <input id="name" type="text" class="form-control" name="name" placeholder="Nombre" readonly value="{{$empleado->nombres}}">
                       </div>
                       <div class="col-md-4">
                         <label for="email">correo</label>
-                        <input id="email" type="email" class="form-control" name="email" placeholder="Correo electronico">
+                        <input id="email" type="email" class="form-control" name="email" placeholder="Correo electronico" value="{{$empleado->user->email}}">
                       </div>
                       <div class="col-md-4">
                         <label for="password">Contraseña</label>
@@ -35,7 +43,7 @@
                       
                     </div>
                     <x-jet-button class="ml-4 btn btn-primary mt-3">
-                        {{ __('Guardar') }}
+                        {{ __('Editar') }}
                     </x-jet-button>
                   </form>
                 </div>

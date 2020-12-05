@@ -16,14 +16,15 @@ class ArticulosProveedorController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index()
+    public function index(Proveedor $proveedor)//metodo para cargar los articulos de provedores. 
     {
-        $articulosProveedores = ArticulosProveedor::paginate(7);
-
-        return view('articulosProveedores.index')
-            ->with('articulosProveedores',$articulosProveedores);
+        $provee=Proveedor::find($proveedor->id)->catalogo;
+        $catalogo = Catalogo::all();
+        $catalogo1 = $catalogo->diff($provee);
+        $articulosProveedores = ArticulosProveedor::where('id_proveedor',$proveedor->id)->get();
+        //return $provee;
+        return view('articulosProveedores.index',compact('catalogo','proveedor','articulosProveedores'));  
     }
-
     /**
      * Show the form for creating a new resource.
      *

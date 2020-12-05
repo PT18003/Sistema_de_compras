@@ -14,8 +14,12 @@ class CreateRequisicionsTable extends Migration
     public function up()
     {
         Schema::create('requisicions', function (Blueprint $table) {
-            $table->bigIncrements('id_requisicion'); 
+            $table->bigIncrements('id_requisicion');
             $table->dateTime('fecha_aceptado');
+            $table->unsignedBigInteger('producto_id')->unsigned();
+            $table->foreign('producto_id')->references('id')->on('Catalogos');
+            $table->unsignedBigInteger('descripcion_id')->unsigned();
+            $table->foreign('descripcion_id')->references('id')->on('Catalogos');
             $table->unsignedBigInteger('creado_id')->unsigned();
             $table->foreign('creado_id')->references('id')->on('Empleados');
             $table->unsignedBigInteger('aceptado_id')->unsigned();

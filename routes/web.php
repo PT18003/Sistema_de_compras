@@ -133,3 +133,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('empleados-list-pdf', [Empl
 
 Route::middleware(['auth:sanctum', 'verified'])->get('doc', [EmpleadoController::class,'doc'])->name('doc');
 
+Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
+//REQUISICION

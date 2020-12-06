@@ -10,7 +10,11 @@ class Catalogo extends Model
     protected $table = 'catalogos';
     public function proveedor()
     {
-        return $this->belongsToMany(Catalogo::class,'articulos_proveedores','id_catalogo','id_proveedor')->withTimestamps();
+        return $this->belongsToMany(Proveedor::class,'articulos_proveedores','id_catalogo','id_proveedor')->withTimestamps();
+    }
+    public function requisicion()
+    {
+        return $this->belongsToMany(Requisicion::class,'detallerequisicion','id_catalogo','requisicion_id')->withTimestamps();
     }
     public function articuloCatalogo()
     {

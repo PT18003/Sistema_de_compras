@@ -61,7 +61,7 @@
                     <td><p class="font-weight-bold">Fecha Inicio: </p>{{$item->fechaInicio}}</td>
                     <td rowspan="3" >
                         <a href="{{route('articulosProveedores.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
-                        <a data-toggle="modal" data-target="#staticBackdrop" ><i class="material-icons md-18 text-danger">delete</i></a>        
+                        <a data-toggle="modal" data-target="#staticBackdrop{{$item->id}}" ><i class="material-icons md-18 text-danger">delete</i></a>        
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                 <tr>
                     <td><p class="font-weight-bold">Precio Unitario: </p>{{$item->precio}}</td>
                 </tr>
-                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop{{$item->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <form action="{{route('articulosProveedores.destroy',$item)}}" method="delete" autocomplete="off">
                         <div class="modal-dialog">
                             <div class="modal-content">

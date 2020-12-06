@@ -97,7 +97,7 @@ class EmpleadoController extends Controller
         $empleado->nombres=$request->nombres;
         $empleado->apellidos=$request->apellidos;
         $empleado->direccion=$request->direccion;
-        //$empleado->municipio_id=$request->municipio; WORK IN PROGRESS
+        $empleado->municipio_id=$request->municipio; 
         $empleado->genero_id=$request->genero;
         $empleado->telefono=$request->telefono;
         $empleado->dui=$request->dui;

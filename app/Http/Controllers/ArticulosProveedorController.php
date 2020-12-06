@@ -25,11 +25,6 @@ class ArticulosProveedorController extends Controller
         //return $provee;
         return view('articulosProveedores.index',compact('catalogo','proveedor','articulosProveedores'));  
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $inventarios = Inventario::all();

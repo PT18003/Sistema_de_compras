@@ -7,6 +7,17 @@
    
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="bg-white  sm:rounded-lg">
+                  @if(Session::has('Mensaje')) <div class="alert alert-success" role="alert">
+                  <h4 class="alert-heading"> {{
+          
+                      Session::get('Mensaje')
+                  }}!</h4>
+                        {{  Session::get('Complemento')}}
+                      </div>
+                  @endif               
+                </div>
+   
                 <div class="container card-body ">                  
                     <div class="branding">
                   <h1>Empleados</h1>
@@ -45,7 +56,7 @@
                                     
                                     <a href="{{ route('registro',$item->id) }}" class="badge badge-warning">Sin Usuario</a>
                                     @else
-                                    <a href="" class="badge badge-success">Ver Datos</a>
+                                    <a href="{{ route('cambio',$item->id) }}" class="badge badge-success">Cambiar contraseña</a>
                                     @endif
 
                                   </td>

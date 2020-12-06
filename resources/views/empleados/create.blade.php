@@ -12,8 +12,8 @@
                     <p>  <a class="" href="{{route('empleados.index')}}" role="button">Regresar.</a></p>
                     </div>   
 
-<h1>Agregar Empleado</h1>
-<div class="container">
+
+<div class="">
     <x-jet-validation-errors class="mb-4" />
     <form action="{{route('empleados.guardar')}}" method="POST">
         @csrf

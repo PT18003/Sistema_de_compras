@@ -13,7 +13,7 @@ class AddModEmpleadoToEmpleadosTable extends Migration
      */
     public function up()
     {
-        Schema::table('empleados', function (Blueprint $table) {
+        Schema::table('Empleados', function (Blueprint $table) {
             //
             $table->softDeletes();
         });

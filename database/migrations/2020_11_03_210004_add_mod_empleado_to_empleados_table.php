@@ -19,7 +19,7 @@ class AddModEmpleadoToEmpleadosTable extends Migration
         });
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('empleado_id')->unsigned()->nullable()->unique();
-            $table->foreign('empleado_id')->references('id')->on('empleados');
+            $table->foreign('empleado_id')->references('id')->on('Empleados');
         });
 
     }

@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Requisicion extends Model
 {
-    use HasFactory;
+    protected $table = 'requisiciones';
+    public function catalogo()
+    {
+        return $this->belongsToMany(Catalogo::class,'detallerequisicion','requisicion_id','id_catalogo')->withTimestamps();
+    }
+    public function articuloProveedor()
+    {
+        return $this->hasMany(DetalleRequisicion::class,'requisicion_id','id');
+
+    }
 }

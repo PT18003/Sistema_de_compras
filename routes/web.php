@@ -11,6 +11,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ArticulosProveedorController;
 use App\Http\Controllers\CatalogoController;
+use App\Http\Controllers\RequisicionController;
+use App\Http\Controllers\DetalleRequisicionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,6 +135,19 @@ Route::middleware(['auth:sanctum', 'verified'])->put('catalogos/edit', [Catalogo
 
 //pdf
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados-list-pdf', [EmpleadoController::class,'exportPdf'])->name('empleados.pdf');
-
 Route::middleware(['auth:sanctum', 'verified'])->get('doc', [EmpleadoController::class,'doc'])->name('doc');
+Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/edit', [CatalogoController::class, 'actualizar'])->name('catalogos.actualizar');
+//REQUISICION
+
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones', [RequisicionController::class,'index'])->name('requisiciones.index');
+Route::middleware(['auth:sanctum', 'verified'])->post('requisiciones', [RequisicionController::class,'create'])->name('requisiciones.create');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/send', [RequisicionController::class,'send'])->name('requisiciones.send');
+//detalle requisicion
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/agregar', [DetalleRequisicionController::class,'index'])->name('detallerequisiciones.index');
+Route::middleware(['auth:sanctum', 'verified'])->post('requisiciones/{requisicion}/agregar',[DetalleRequisicionController::class,'store'])->name('detallerequisiciones.store');//agregar a la requisicion
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/detalle',[DetalleRequisicionController::class,'detalle'])->name('detallerequisiciones.detalle');
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/detalle/{detallerequisicion}',[DetalleRequisicionController::class,'edit'])->name('detallerequisiciones.edit');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/detallerequisicion/actualizar/{detallerequisicion}', [DetalleRequisicionController::class,'update'])->name('detallerequisiciones.update');
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/detallerequisicion/destroy/{detallerequisicion}',[DetalleRequisicionController::class,'destroy'])->name('detallerequisiciones.destroy');
+
 

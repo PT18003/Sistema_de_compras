@@ -13,17 +13,18 @@ class CreateRequisicionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisicions', function (Blueprint $table) {
-            $table->bigIncrements('id_requisicion'); 
-            $table->dateTime('fecha_aceptado');
+        Schema::create('requisiciones', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->dateTime('fechaAceptada')->nullable(true);
             $table->unsignedBigInteger('creado_id')->unsigned();
+            $table->unsignedBigInteger('aceptado_id')->nullable(true)->unsigned();
+            $table->unsignedBigInteger('encargado_id')->nullable(true)->unsigned();
+            $table->integer('estado_req')->default('0');
             $table->foreign('creado_id')->references('id')->on('Empleados');
-            $table->unsignedBigInteger('aceptado_id')->unsigned();
-            $table->unsignedBigInteger('encargado_id')->unsigned();
             $table->foreign('aceptado_id')->references('id')->on('Empleados');
             $table->foreign('encargado_id')->references('id')->on('Empleados');
-            $table->string('estado_req');
             $table->timestamps();
+            $table->softDeletes(); 
         });
     }
 

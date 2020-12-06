@@ -63,14 +63,14 @@
                                   <td>
                                   <a href="{{route('empleados.edit',$item->id)}}"><i class="material-icons md-18">edit</i></a>
                                   <a href="{{route('empleados.destroy',$item)}}"><i class="material-icons md-18">delete</i></a>
-                                  <a id="ver" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons md-18">preview</i></a>
+                                  <a id="ver" data-toggle="modal" data-target="#staticBackdrop{{$item->id}}"><i class="material-icons md-18">preview</i></a>
                               </td>
                               </tr>
                               <!-- Button trigger modal -->
 
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="staticBackdrop{{$item->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">

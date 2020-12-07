@@ -84,3 +84,27 @@ Route::middleware(['auth:sanctum', 'verified'])->put('empleados/{empleado}', [Em
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/{empleado}/edit', [EmpleadoController::class,'edit'])->name('empleados.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/delete/{empleado}/', [EmpleadoController::class,'destroy'])->name('empleados.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/view/{empleado}', [EmpleadoController::class,'view'])->name('empleados.view');
+
+/**
+* Solo tienen acceso usuarios logueados.
+*/
+Route::group(['middleware' => 'auth'], function() { 
+
+
+/**
+* Solo tienen acceso usuarios con rol de Administrador.
+*/
+Route::group(['middleware' => 'admin'], function() {
+// agregar todas las rutas referentes al rol de Administrador 
+
+    });
+
+/**
+* Solo tienen acceso usuarios con rol de Empleado.
+*/
+Route::group(['middleware' => 'emple'], function() {
+// agregar todas las rutas referentes al rol de Empleado 
+
+    });
+
+});

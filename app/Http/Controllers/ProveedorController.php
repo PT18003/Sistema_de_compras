@@ -35,8 +35,8 @@ class ProveedorController extends Controller
             'montoMin'=>'required|numeric|between:0,9999.99|regex:/^\d{1,3}(?:\d\d\d)*(?:.\d{1,2})?$/',
             'tiempoEntrega'=>'required|numeric|between:0,365|',
             'periodoPago'=>'required|numeric|between:0,365|',
-            'municipio'=>'required|exists:municipio,id',
-            'departamento'=>'required|exists:departamento,id'
+            'municipio'=>'required|exists:Municipio,id',
+            'departamento'=>'required|exists:Departamento,id'
         ]);
         $proveedor = new Proveedor();
         $proveedor->nombre=$request->nombre;

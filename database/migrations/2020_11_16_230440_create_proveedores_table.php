@@ -26,7 +26,7 @@ class CreateProveedoresTable extends Migration
             $table->integer('periodoPago')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('municipio_id')->references('id')->on('municipio');
+            $table->foreign('municipio_id')->references('id')->on('Municipio');
         });
     }
 

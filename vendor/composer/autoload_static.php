@@ -626,7 +626,6 @@ class ComposerStaticInit47faf976d46ca219ccee80db7634c0df
         'App\\Http\\Requests\\EmpleadoCreate' => __DIR__ . '/../..' . '/app/Http/Requests/EmpleadoCreate.php',
         'App\\Models\\AreaTrabajo' => __DIR__ . '/../..' . '/app/Models/AreaTrabajo.php',
         'App\\Models\\ArticulosProveedor' => __DIR__ . '/../..' . '/app/Models/ArticulosProveedor.php',
-        'App\\Models\\Catalogo' => __DIR__ . '/../..' . '/app/Models/Catalogo.php',
         'App\\Models\\Departamento' => __DIR__ . '/../..' . '/app/Models/Departamento.php',
         'App\\Models\\Empleado' => __DIR__ . '/../..' . '/app/Models/Empleado.php',
         'App\\Models\\EstadoCivil' => __DIR__ . '/../..' . '/app/Models/EstadoCivil.php',

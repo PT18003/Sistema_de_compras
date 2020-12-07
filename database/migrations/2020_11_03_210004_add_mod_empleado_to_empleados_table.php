@@ -13,13 +13,13 @@ class AddModEmpleadoToEmpleadosTable extends Migration
      */
     public function up()
     {
-        Schema::table('empleados', function (Blueprint $table) {
+        Schema::table('Empleados', function (Blueprint $table) {
             //
             $table->softDeletes();
         });
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('empleado_id')->unsigned()->nullable()->unique();
-            $table->foreign('empleado_id')->references('id')->on('empleados');
+            $table->foreign('empleado_id')->references('id')->on('Empleados');
         });
 
     }

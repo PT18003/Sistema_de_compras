@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => '12cc970dc1640c88956ae38783ff1cef5ca64eb2',
+    'reference' => 'f7a6add1d831970d2df00f6a5d510ed199a99a4c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -512,12 +512,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => '12cc970dc1640c88956ae38783ff1cef5ca64eb2',
+      'reference' => 'f7a6add1d831970d2df00f6a5d510ed199a99a4c',
     ),
     'laravel/sanctum' => 
     array (

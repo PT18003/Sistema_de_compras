@@ -42,7 +42,6 @@ return array(
     'App\\Http\\Requests\\EmpleadoCreate' => $baseDir . '/app/Http/Requests/EmpleadoCreate.php',
     'App\\Models\\AreaTrabajo' => $baseDir . '/app/Models/AreaTrabajo.php',
     'App\\Models\\ArticulosProveedor' => $baseDir . '/app/Models/ArticulosProveedor.php',
-    'App\\Models\\Catalogo' => $baseDir . '/app/Models/Catalogo.php',
     'App\\Models\\Departamento' => $baseDir . '/app/Models/Departamento.php',
     'App\\Models\\Empleado' => $baseDir . '/app/Models/Empleado.php',
     'App\\Models\\EstadoCivil' => $baseDir . '/app/Models/EstadoCivil.php',

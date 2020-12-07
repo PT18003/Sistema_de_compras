@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetalleRequisicion extends Model
 {
-    protected $table = 'detallerequisicion';
+    protected $table = 'detalleRequisicion';
     public function catalogo()
     {
         return $this->belongsTo(Catalogo::class, 'id_catalogo');

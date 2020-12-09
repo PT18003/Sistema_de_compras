@@ -7,10 +7,13 @@ use App\Models\Departamento;
 use App\Models\EstadoCivil;
 use App\Models\Genero;
 use App\Models\AreaTrabajo;
+use App\Models\Requisicion;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpleadoCreate;
+
+use App\Models\DetalleRequisicion;
 
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -29,14 +32,35 @@ class EmpleadoController extends Controller
     public function exportPdf()
     {
         $empleados = Empleado::get();
-        $pdf = PDF::loadView('pdf.empleados',compact('empleados'));
+        $requisiciones = Requisicion::get();
+        $pdf = PDF::loadView('pdf.empleados',compact('empleados'),compact('requisiciones'));
         return $pdf->download('empleados-list.pdf');
     }
     public function doc()
     {
         $empleados=Empleado::get();
-        return view('pdf.empleados', compact('empleados'));
+        $requisiciones = Requisicion::get();
+        return view('pdf.empleados', compact('empleados'),compact('requisiciones'));
     }
+
+    public function exportRequisicionCPdf(Requisicion $requisicion)
+    {
+        $requisicion = Requisicion::where('id',$requisicion->id)->first();
+        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+        $name = 'comprobante-requisicion-'.$requisicion->id.'.pdf';
+      
+        $pdf = PDF::loadView('pdf.requisicioncompra',compact('detalleRequisicion','requisicion'));
+        return $pdf->download($name);
+
+    }
+    public function pruebaPdf(Requisicion $requisicion)
+    {
+        $requisicion = Requisicion::where('id',$requisicion->id)->first();
+        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+     
+        return view('pdf.requisicioncompra',compact('detalleRequisicion','requisicion'));
+    }
+    
     
 /*     public function getTowns(Request $request,$id)
     {

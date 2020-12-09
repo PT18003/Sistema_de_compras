@@ -151,3 +151,6 @@ Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/detallerequi
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/detallerequisicion/destroy/{detallerequisicion}',[DetalleRequisicionController::class,'destroy'])->name('detallerequisiciones.destroy');
 
 
+//PDF x2
+Route::middleware(['auth:sanctum', 'verified'])->get('requisicion-c-pdf/{requisicion}/detalle', [EmpleadoController::class,'exportRequisicionCPdf'])->name('requisicionC.pdf');
+Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');

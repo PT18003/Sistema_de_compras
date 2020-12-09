@@ -8,36 +8,12 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="container card-body ">                  
                 <div class="branding">
-                    <h1>Bienvenido <b>{{ Auth::user()->name }}</b></h1>
+                    <h1 class="mt-4">Bienvenido <b>{{ Auth::user()->name }}</b></h1>
                     <a href="{{route('empleados.pdf')}}">Puede descargar una lista de los empleados <b> AQUI</b> </a>
                 
                 </div>
-                <div class="row">
-                  <div class="col-xl-4 col-md-6 pb-2">
-                        <div class="card  bg-light p-0 h-100 shadow-sm">
-                            <div class="row h-100 no-gutters rounded flex-nowrap">
-                                <div class="col-auto bg-danger rounded-left">&nbsp;</div>
-                                <div class="col p-3 py-4 text-danger">
-                                    <h6 class="text-truncate text-uppercase">Salidas</h6>
-                                    <h3>53</h3>
-                                </div>
-                             
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 pb-2">
-                        <div class="card  p-0 h-100 shadow-sm">
-                            <div class="row h-100 no-gutters rounded flex-nowrap">
-                                <div class="col-auto bg-success rounded-left">&nbsp;</div>
-                                <div class="col p-3 py-4 text-success">
-                                    <h6 class="text-truncate text-uppercase">Entradas</h6>
-                                    <h3>53</h3>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             
+               
                 <div class="row">
                   
                     {{--ordenes--}}
@@ -91,9 +67,152 @@
                     {{--fin ordenes--}}
                 </div>   
 
+       <div class="row">
+                  <div class="col-xl-4 col-md-6 pb-2">
+                        <div class="card  p-0 h-100 shadow-sm">
+                            <div class="row h-100 no-gutters rounded flex-nowrap">
+                                <div class="col-auto bg-danger rounded-left">&nbsp;</div>
+                                <div class="col p-3 py-4 text-danger">
+                                    <h6 class="text-truncate text-uppercase">Salidas</h6>
+                                    <h3>53</h3>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 pb-2">
+                        <div class="card  p-0 h-100 shadow-sm">
+                            <div class="row h-100 no-gutters rounded flex-nowrap">
+                                <div class="col-auto bg-success rounded-left">&nbsp;</div>
+                                <div class="col p-3 py-4 text-success">
+                                    <h6 class="text-truncate text-uppercase">Entradas</h6>
+                                    <h3>53</h3>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
 
             </div>                     
         </div>
     </div> 
+</div>
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-4">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="container card-body "> 
+            <h2 class="mt-4 mb-4">Area de reportes.</h2>
+          
+              <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card card-stats h-100">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="mdi  mdi-36px mdi-credit-card-outline float-right"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="numbers">
+                                                <p class="card-category">Empleados</p>
+                                                <h4 class="card-title">123</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <hr>
+                                    <div class="stats">
+                                         <i class="mdi mdi-credit-card-outline float-right"></i><a href="">Consultar articulos solicitados por empleados.</a>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card card-stats h-100">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center icon-warning">
+                                                  <i class="mdi  mdi-36px mdi-credit-card-outline float-right"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="numbers">
+                                                <p class="card-category">Areas</p>
+                                                <h4 class="card-title"> 12</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <hr>
+                                    <div class="stats">
+                                         <i class="mdi mdi-credit-card-outline float-right"></i> <a href="">Consultar articulos solicitados por areas de trabajo.</a>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card card-stats h-100">
+                                <div class="card-body  ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="nc-icon nc-vector text-danger"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="numbers">
+                                                <p class="card-category">Proveedores</p>
+                                                <h4 class="card-title">23</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                      <hr>
+                                      
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> <a href="">Reporte de pedidos por proveedores</a>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card card-stats  h-100">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="mdi mdi-36px mdi-credit-card-outline float-right"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="numbers">
+                                                <p class="card-category">Articulos</p>
+                                                <h4 class="card-title">45</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                    <ul>
+                                    <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href=""> Reporte de precios vigentes</a></li>
+                                     <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href="">Reporte de stock de iventario</a></li>
+                                     <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href=""> Reporte de Inventario</a></li>
+                                     
+                                     
+
+                                    </ul>
+                                       
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>                 
+            </div>
+        </div>
 </div>
 @endsection  

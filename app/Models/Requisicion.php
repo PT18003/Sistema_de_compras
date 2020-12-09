@@ -17,4 +17,12 @@ class Requisicion extends Model
         return $this->hasMany(DetalleRequisicion::class,'requisicion_id','id');
 
     }
+    public function creado()
+    {
+        return $this->belongsTo(Empleado::class,'creado_id');
+    }
+    public function aceptado()
+    {
+        return $this->belongsTo(Empleado::class,'aceptado_id');
+    }
 }

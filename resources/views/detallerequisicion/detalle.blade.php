@@ -9,7 +9,17 @@
             <div class="container card-body ">                  
                 <div class="branding">
                     <h1>Detalle de mi requisicion</h1>
-                    <p>  <a class="" href="{{route('detallerequisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                 
+                    @if($requisicion->estado_req===0)
+                    
+                        <p>  <a class="" href="{{route('detallerequisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                     
+                    @elseif($requisicion->estado_req===1)
+                    
+                        <p>  <a class="" href="{{route('requisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                     
+                    @endif
+
                 </div>
 
 
@@ -85,6 +95,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="{{route('requisicionC.pdf',$requisicion)}}" class="btn btn-info">Generar pdf</a>
+                    
+
                 </div>
 
             </div>                     

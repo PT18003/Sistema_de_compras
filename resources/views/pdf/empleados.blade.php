@@ -60,7 +60,7 @@
 
         
         
-        
+        {{$requisiciones}}
     </body>
 </html>
 

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rol extends Model
 {
+    use SoftDeletes;//para borrado logico
     use HasFactory;
     protected $table = 'roles';
 
@@ -16,8 +18,8 @@ class Rol extends Model
      * @var array
      */
     protected $fillable = [
-       	'nombre',
-    	'descripcion',
+        'nombre',
+        'descripcion',
     ];
 
      public function users()

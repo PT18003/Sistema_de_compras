@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\EstadoCivilController;
+use App\Http\Controllers\RolController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +85,14 @@ Route::middleware(['auth:sanctum', 'verified'])->put('empleados/{empleado}', [Em
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/{empleado}/edit', [EmpleadoController::class,'edit'])->name('empleados.edit');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/delete/{empleado}/', [EmpleadoController::class,'destroy'])->name('empleados.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/view/{empleado}', [EmpleadoController::class,'view'])->name('empleados.view');
+
+//Roles
+Route::get('roles', [RolController::class,'index'])->name('roles.index');
+Route::get('roles/create', [RolController::class,'create'])->name('roles.create');
+Route::post('roles',[RolController::class,'store'])->name('roles.store');
+Route::put('roles/{rol}', [RolController::class,'update'])->name('roles.update');
+Route::get('roles/{rol}/edit', [RolController::class,'edit'])->name('roles.edit');
+Route::get('roles/delete/{rol}/', [RolController::class,'destroy'])->name('roles.destroy');
 
 /**
 * Solo tienen acceso usuarios logueados.

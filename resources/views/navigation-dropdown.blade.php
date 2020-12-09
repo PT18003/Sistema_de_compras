@@ -33,6 +33,9 @@
                     <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
                         {{ __('Empleados') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
+                        {{ __('Roles') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

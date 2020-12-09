@@ -8,16 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArticulosProveedor extends Model
 {
+    protected $table = 'articulos_proveedores';
     use SoftDeletes;//para borrado logico
     
-    protected $table = 'articulos_proveedores';
+    
 
-     /**
-     * Atributos que son asignados en masa.
-     *
-     * @var array
-     */
-    protected $fillable = [
+
+  /*   protected $fillable = [
         'id_inventario',
         'id_proveedor',
         'codigoArticulo',
@@ -29,7 +26,7 @@ class ArticulosProveedor extends Model
         'descuento',
         'tiempoEntrega',
     ];
-
+ */
      public function catalogo()
     {
         return $this->belongsTo(Catalogo::class, 'id_catalogo');
@@ -39,4 +36,9 @@ class ArticulosProveedor extends Model
     {
         return $this->belongsTo(Proveedor::class, 'id_proveedor');
     }
+    public function detallerequisicion()
+    {
+        return $this->hasMany(DetalleRequisicion::class, 'id_articuloProveedor','id');
+    }
+
 }

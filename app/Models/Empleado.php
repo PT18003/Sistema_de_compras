@@ -45,4 +45,8 @@ class Empleado extends Model
     {               
         return $this->hasOne(User::class,'empleado_id');
     }
+    public function requisicion()
+    {
+        return $this->hasMany(Requisicion::class);
+    }
 }

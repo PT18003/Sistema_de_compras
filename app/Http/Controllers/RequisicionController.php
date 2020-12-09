@@ -9,16 +9,43 @@ use App\Models\Requisicion;
 use App\Models\Empleado;
 use App\Models\DetalleRequisicion;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Else_;
 use Svg\Tag\Rect;
 
 class RequisicionController extends Controller
 {
     public function index()
     {
+        
         $empleado = Auth::user()->empleado_id;
-        $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
-        $mensajeError = NULL;
-        return view('requisicion.index', compact('mensajeError','requisiciones'));
+        $empleadobuscar = Empleado::find($empleado)->areatrabajo_id;
+        if($empleadobuscar==3)
+        {
+            $permiso =3;
+            $requisiciones =  Requisicion::where('estado_req','=','1')->orWhere('estado_req','=','2')->orWhere('estado_req','=','3')->get();
+            $mensajeError = NULL;
+            return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));
+        }
+        else
+        {
+            if($empleadobuscar==2)
+            {
+                $permiso =2;
+                $requisiciones =  Requisicion::where('estado_req','=','2')->get();
+                $mensajeError = NULL;
+                return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));
+    
+            }
+            else
+            {
+                $permiso =1;
+                $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
+                $mensajeError = NULL;
+                return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));    
+            }
+        }
+
+
     }
 
     public function create(Request $request)
@@ -48,6 +75,25 @@ class RequisicionController extends Controller
         $requisicion->estado_req=1;
         $requisicion->save();
         return redirect()->route('detallerequisiciones.index',[$requisicion->id]);
+    }
+    public function aceptar(Request $request, Requisicion $requisicion)
+    {
+
+        $requisicion->estado_req=2;
+        $empleado = Auth::user()->empleado_id;
+        $requisicion->aceptado_id=$empleado;
+        $requisicion->fechaAceptada=date('Y-m-d H:i:s');
+        $requisicion->save();
+        return  redirect()->route('requisiciones.index');
+    }
+    public function denegar(Request $request, Requisicion $requisicion)
+    {
+
+        $requisicion->estado_req=3;
+        $empleado = Auth::user()->empleado_id;
+        $requisicion->aceptado_id=$empleado;
+        $requisicion->save();
+        return redirect()->route('requisiciones.index');
     }
     
 

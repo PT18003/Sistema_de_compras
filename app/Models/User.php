@@ -61,4 +61,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Empleado::class,'empleado_id');
     }
+    public function rol()
+    {
+        return $this->belongsTo(Roles::class,'id_rol');
+    }
+
+    public function admin() {
+        return $this->rol->nombre === 'admin';
+    }
+
+    public function emple() {
+        return $this->rol->nombre === 'empleado';
+    }
 }

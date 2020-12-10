@@ -13,6 +13,7 @@ use App\Http\Controllers\ArticulosProveedorController;
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\RequisicionController;
 use App\Http\Controllers\DetalleRequisicionController;
+use App\Http\Controllers\RolController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

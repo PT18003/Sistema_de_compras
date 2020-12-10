@@ -95,7 +95,11 @@ class RequisicionController extends Controller
         $requisicion->save();
         return redirect()->route('requisiciones.index');
     }
-    
+    public function ordenar(Request $request, Requisicion $requisicion)
+    {
+        return $requisicion;
+        //$detallerequisicion = DetalleRequisicion::where
+    }
 
 
 }

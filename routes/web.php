@@ -144,6 +144,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('requisiciones', [Requisic
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/send', [RequisicionController::class,'send'])->name('requisiciones.send');
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/aceptar', [RequisicionController::class,'aceptar'])->name('requisiciones.aceptar');
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/demegar', [RequisicionController::class,'denegar'])->name('requisiciones.denegar');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/ordenar', [RequisicionController::class,'ordenar'])->name('requisiciones.ordenar');
 
 //detalle requisicion
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/agregar', [DetalleRequisicionController::class,'index'])->name('detallerequisiciones.index');

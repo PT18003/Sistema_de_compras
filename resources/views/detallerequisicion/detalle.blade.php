@@ -84,7 +84,7 @@
                                     
                                     @endforeach
                                         @if ($permiso==1 )
-                                            <form action="{{route('requisiciones.send',$requisicion)}}" method="post" autocomplete="off"> 
+                                            <form action="{{route('requisiciones.ordenar',$requisicion)}}" method="post" autocomplete="off"> 
                                             @csrf
                                             @method('put')
                                             <button type="submit" class="btn btn-success">Enviar</button>

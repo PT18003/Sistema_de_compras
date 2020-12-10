@@ -175,8 +175,7 @@ class DetalleRequisicionController extends Controller
         $detallerequisicion->id_articuloProveedor = $articuloproveedor->id;
         $detallerequisicion->save();
         return redirect()->route('detallerequisiciones.detalle',[$detallerequisicion->requisicion_id ]);
-        
-
     }
+  
 
 }

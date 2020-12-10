@@ -53,9 +53,11 @@
                       <input id="id" type="text" class="form-control d-none" name="id"  value="{{$empleado->id}}">
                       
                     </div>
+                    <div>
                     <x-jet-button class="ml-4 btn btn-primary mt-3">
                         {{ __('Editar') }}
                     </x-jet-button>
+                    </div>
                   </form>
                 </div>
             </div>

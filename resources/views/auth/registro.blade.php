@@ -5,6 +5,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+          <x-jet-validation-errors class="mb-4" />
             <div class="container card-body ">                  
                 <div class="branding">
                 <h1>Crear usuario a Empleado <b>{{$empleado->nombres}}</b></h1>

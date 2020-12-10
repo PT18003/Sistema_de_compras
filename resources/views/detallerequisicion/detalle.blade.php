@@ -218,8 +218,9 @@
                         @endif
 
                     </div>
+
                     <a href="{{route('requisicionC.pdf',$requisicion)}}" class="btn btn-info">Generar pdf</a>
-                    
+                    @endif
 
                 </div>
 

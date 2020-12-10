@@ -74,8 +74,8 @@
                 </div>
                 
                     <h6 class="text-center">Elaborado por: <b>{{$requisicion->creado->nombres}}</b>
-                    Aprobado por: <b>@if(!isset($requisicion->aceptado))____________ @else $requisicion->aceptado @endif</b>
-                    Recibido por: <b>@if(!isset($requisicion->aceptado))____________ @else $requisicion->aceptado @endif</b>
+                    Aprobado por: <b>@if(!isset($requisicion->aceptado))____________ @else {{$requisicion->aceptado->nombres}} @endif</b>
+                    Recibido por: <b>@if(!isset($requisicion->encargado))____________ @else {{$requisicion->encargado->nombres }}@endif</b>
             
                 
               

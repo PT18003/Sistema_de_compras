@@ -13,6 +13,7 @@ use App\Http\Controllers\ArticulosProveedorController;
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\RequisicionController;
 use App\Http\Controllers\DetalleRequisicionController;
+use App\Http\Controllers\RolController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,28 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 /* Se pueden usar el metodo resourse para ahorrar lineas de codigo en una sola 
 pero hay que usar las convecciones que laravel nos da v: */
 
-//ruta para mostrar
+
+
+//Roles
+Route::get('roles', [RolController::class,'index'])->name('roles.index');
+Route::get('roles/create', [RolController::class,'create'])->name('roles.create');
+Route::post('roles',[RolController::class,'store'])->name('roles.store');
+Route::put('roles/{rol}', [RolController::class,'update'])->name('roles.update');
+Route::get('roles/{rol}/edit', [RolController::class,'edit'])->name('roles.edit');
+Route::get('roles/delete/{rol}/', [RolController::class,'destroy'])->name('roles.destroy');
+
+/**
+* Solo tienen acceso usuarios logueados.
+*/
+Route::group(['middleware' => 'auth'], function() { 
+
+
+/**
+* Solo tienen acceso usuarios con rol de Administrador.
+*/
+Route::group(['middleware' => 'admin'], function() {
+// agregar todas las rutas referentes al rol de Administrador 
+	//ruta para mostrar
 Route::middleware(['auth:sanctum', 'verified'])->get('areatrabajos', [AreaTrabajoController::class,'index'])->name('areatrabajos.index');
 //ruta para la pagina y para guardar 
 Route::middleware(['auth:sanctum', 'verified'])->get('areatrabajos/create', [AreaTrabajoController::class,'create'])->name('areatrabajos.create');
@@ -80,6 +102,22 @@ Route::middleware(['auth:sanctum', 'verified'])->post('estadosciviles', [EstadoC
 Route::middleware(['auth:sanctum', 'verified'])->get('estadosciviles/{estadocivil}/edit', [EstadoCivilController::class,'edit'])->name('estadosciviles.edit');
 Route::middleware(['auth:sanctum', 'verified'])->put('estadosciviles/{estadocivil}', [EstadoCivilController::class,'actualizar'])->name('estadosciviles.actualizar');
 Route::middleware(['auth:sanctum', 'verified'])->get('estadosciviles/delete/{estadocivil}/', [EstadoCivilController::class,'destroy'])->name('estadosciviles.destroy');
+
+//Roles
+Route::get('roles', [RolController::class,'index'])->name('roles.index');
+Route::get('roles/create', [RolController::class,'create'])->name('roles.create');
+Route::post('roles',[RolController::class,'store'])->name('roles.store');
+Route::put('roles/{rol}', [RolController::class,'update'])->name('roles.update');
+Route::get('roles/{rol}/edit', [RolController::class,'edit'])->name('roles.edit');
+Route::get('roles/delete/{rol}/', [RolController::class,'destroy'])->name('roles.destroy');
+
+    });
+
+/**
+* Solo tienen acceso usuarios con rol de Empleado.
+*/
+Route::group(['middleware' => 'emple'], function() {
+// agregar todas las rutas referentes al rol de Empleado 
 //empleados
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados', [EmpleadoController::class,'index'])->name('empleados.index');
 Route::middleware(['auth:sanctum', 'verified'])->get('empleados/create', [EmpleadoController::class,'create'])->name('empleados.create');
@@ -155,36 +193,6 @@ Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/detallerequi
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/detallerequisicion/destroy/{detallerequisicion}',[DetalleRequisicionController::class,'destroy'])->name('detallerequisiciones.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/detalle/{detallerequisicion}/agregararticulo',[DetalleRequisicionController::class,'agregararticulo'])->name('detallerequisiciones.agregararticulo');
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/requisicion/detalle/{detallerequisicion}/agregararticulo/{articuloproveedor}',[DetalleRequisicionController::class,'agregararticuloproveedor'])->name('detallerequisiciones.agregararticuloproveedor');
-
-
-
-//Roles
-Route::get('roles', [RolController::class,'index'])->name('roles.index');
-Route::get('roles/create', [RolController::class,'create'])->name('roles.create');
-Route::post('roles',[RolController::class,'store'])->name('roles.store');
-Route::put('roles/{rol}', [RolController::class,'update'])->name('roles.update');
-Route::get('roles/{rol}/edit', [RolController::class,'edit'])->name('roles.edit');
-Route::get('roles/delete/{rol}/', [RolController::class,'destroy'])->name('roles.destroy');
-
-/**
-* Solo tienen acceso usuarios logueados.
-*/
-Route::group(['middleware' => 'auth'], function() { 
-
-
-/**
-* Solo tienen acceso usuarios con rol de Administrador.
-*/
-Route::group(['middleware' => 'admin'], function() {
-// agregar todas las rutas referentes al rol de Administrador 
-
-    });
-
-/**
-* Solo tienen acceso usuarios con rol de Empleado.
-*/
-Route::group(['middleware' => 'emple'], function() {
-// agregar todas las rutas referentes al rol de Empleado 
 
     });
 

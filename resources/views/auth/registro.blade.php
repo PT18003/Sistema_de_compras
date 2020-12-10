@@ -30,6 +30,20 @@
                         <label for="password_confirmation">Repite laContraseña</label>
                         <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Repite la contraseña">
                       </div>
+                      @if (Auth::user()->admin())
+                      <div class="form-group col-md-4">
+                <label for="rol">Rol</label>
+                <select class="custom-select mr-sm-2" id="id_rol" name="id_rol">
+                    <option selected>Seleccione</option>
+                    @foreach ($roles as $item)
+                        @if (old('rol')==$item->id)
+                            <option value="{{$item->id}}" selected>{{$item->nombre}}</option>
+                        @else
+                            <option value="{{$item->id}}" >{{$item->nombre}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div> @endif
                       
                       <input id="id" type="text" class="form-control d-none" name="id"  value="{{$empleado->id}}">
                       

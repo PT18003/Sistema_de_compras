@@ -123,7 +123,7 @@
                                     </div>
                                      <hr>
                                     <div class="stats">
-                                         <i class="mdi mdi-credit-card-outline float-right"></i><a href="">Consultar articulos solicitados por empleados.</a>
+                                         <i class="mdi mdi-credit-card-outline float-right"></i><a href="{{route('artempleados')}}">Consultar articulos solicitados por empleados.</a>
                                     </div>
                                 </div>
                                
@@ -147,7 +147,7 @@
                                     </div>
                                      <hr>
                                     <div class="stats">
-                                         <i class="mdi mdi-credit-card-outline float-right"></i> <a href="">Consultar articulos solicitados por areas de trabajo.</a>
+                                         <i class="mdi mdi-credit-card-outline float-right"></i> <a href="{{route('artareas')}}">Consultar articulos solicitados por areas de trabajo.</a>
                                     </div>
                                 </div>
                                

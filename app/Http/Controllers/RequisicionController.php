@@ -27,7 +27,7 @@ class RequisicionController extends Controller
         $requisicion = new Requisicion();
         $empleado = Auth::user()->empleado_id;
         $requisicion->creado_id=$empleado;
-        $requisiciones = Requisicion::where('estado_req','<','2')->count();
+        $requisiciones = Requisicion::where('estado_req','<','2')->where('creado_id','=',$empleado)->count();
         if($requisiciones >=3)
         {
             $mensajeError = "No se puedes realizar mas de 3 requisiciones si no han sido aceptadas o enviadas";
@@ -47,6 +47,7 @@ class RequisicionController extends Controller
     {
         $requisicion->estado_req=1;
         $requisicion->save();
+        return redirect()->route('detallerequisiciones.index',[$requisicion->id]);
     }
     
 

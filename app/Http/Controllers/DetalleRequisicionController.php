@@ -7,7 +7,12 @@ use App\Models\Requisicion;
 use App\Models\Catalogo;
 use Illuminate\Http\Request;
 use App\Models\DetalleRequisicion;
+use App\Models\Empleado;
+use Illuminate\Support\Facades\DB;
+use App\Models\AreaTrabajo;
 
+
+use Barryvdh\DomPDF\Facade as PDF;
 class DetalleRequisicionController extends Controller
 {
     public function index(Requisicion $requisicion)
@@ -87,4 +92,63 @@ class DetalleRequisicionController extends Controller
         return redirect()->route('detallerequisiciones.detalle',[$detallerequisicion->requisicion_id ]);
     }
 
+    public function artempledos()
+    {
+        $empleados = Empleado::get();
+        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')->select('Empleados.id','Empleados.nombres','Empleados.apellidos',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
+        ->groupBy('Empleados.id','Empleados.nombres','Empleados.apellidos')->get();
+
+        return view('reportes.artempleados', compact('empleados','suma'));
+    }
+    public function artareas()
+    {
+        $requisiciones = Requisicion::get();
+        $areas = AreaTrabajo::get();
+        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')
+        ->join('AreaTrabajo','Empleados.areatrabajo_id','=','AreaTrabajo.id')
+        ->select('Empleados.areatrabajo_id','AreaTrabajo.nombreDep',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
+        ->groupBy('Empleados.areatrabajo_id','AreaTrabajo.nombreDep')->get();
+
+        return view('reportes.artareas', compact('areas','suma','requisiciones'));
+    }
+    public function artareasPdf()
+    {
+        $requisiciones = Requisicion::get();
+        $areas = AreaTrabajo::get();
+        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')
+        ->join('AreaTrabajo','Empleados.areatrabajo_id','=','AreaTrabajo.id')
+        ->select('Empleados.areatrabajo_id','AreaTrabajo.nombreDep',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
+        ->groupBy('Empleados.areatrabajo_id','AreaTrabajo.nombreDep')->get();
+        
+        $name = 'reporte-areas.pdf';
+      
+        $pdf = PDF::loadView('pdf.artareas', compact('areas','suma','requisiciones'));
+        return $pdf->download($name);
+    
+    }
+    public function artempleadosPdf()
+    {
+        $empleados = Empleado::get();
+        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')->select('Empleados.id','Empleados.nombres','Empleados.apellidos',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
+        ->groupBy('Empleados.id','Empleados.nombres','Empleados.apellidos')->get();
+    
+        $name = 'reporte-articulos-empleados.pdf';
+      
+        $pdf = PDF::loadView('pdf.artempleados', compact('empleados','suma'));
+        return $pdf->download($name);
+    
+    }
+    public function pruebaPdf()
+    {
+        $empleados = Empleado::get();
+        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')->select('Empleados.id','Empleados.nombres','Empleados.apellidos',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
+        ->groupBy('Empleados.id','Empleados.nombres','Empleados.apellidos')->get();
+
+        return view('pdf.artempleados', compact('empleados','suma'));
+    }
 }

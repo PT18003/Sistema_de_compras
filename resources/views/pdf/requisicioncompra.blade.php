@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
         
     </head>
-    <body class="font-sans antialiased">
+    <body class="card-body">
           <h3 class="text-center"><b> Sistema de compras TOO115 S.A</b></h3>
           <h5 class="text-center"> Ruc. 129391-9283</h5>
          <h5 class="text-center">

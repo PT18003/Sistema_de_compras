@@ -69,32 +69,33 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="municipio">Municipio</label>
-                    <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
-                        @foreach ($municipios as $item)
-                            <option selected>Seleccione</option>
-                            @if (old('municipio')==$item->id)
-                                <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
-                            @else
-                                <option value="{{$item->id}}">{{$item->municipio}}</option>
-                            @endif
-                        @endforeach
-                    </select>
+                <select class="custom-select mr-sm-2" id="municipio" name="municipio" >
+                    <option selected>Seleccione</option>
+                    @foreach ($municipios as $item)
+                        
+                        @if (old('municipio')==$item->id)
+                            <option value="{{$item->id}}" selected>{{$item->municipio}}</option> 
+                        @else
+                            <option value="{{$item->id}}">{{$item->municipio}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
              <div class="form-group col-md-3">
                                     <label for="direccion">Direccion</label>
-                                    <input id="direccion" type="text" class="form-control" {{old('direccion')}} name="direccion" placeholder="Direccion: ej. #calle, #pasaje, Av.">
+                                    <input id="direccion" type="text" class="form-control"  value="{{old('direccion')}}" name="direccion" placeholder="Direccion: ej. #calle, #pasaje, Av.">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="telefono">Telefono</label>
-                                    <input id="telefono" type="text" class="form-control" {{old('telefono')}} name="telefono" placeholder="Telefono">
+                                    <input id="telefono" type="text" class="form-control"  value="{{old('telefono')}}" name="telefono" placeholder="Telefono">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="dui">DUI</label>
-                                    <input id="dui" type="text" class="form-control" {{old('dui')}} name="dui" placeholder="DUI, sin guion">
+                                    <input id="dui" type="text" class="form-control" value="{{old('dui')}}" name="dui" placeholder="DUI, sin guion">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="salario">Salario</label>
-                                    <input id="salario" type="number" step=0.01 class="form-control" {{old('salario')}} name="salario" placeholder="Salario USD">
+                                    <input id="salario" type="number" step=0.01 class="form-control"  value="{{old('salario')}}" name="salario" placeholder="Salario USD">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="vencimientoContrato">Vencimiento de contrato</label>

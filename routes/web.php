@@ -153,4 +153,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/detallerequi
 
 //PDF x2
 Route::middleware(['auth:sanctum', 'verified'])->get('requisicion-c-pdf/{requisicion}/detalle', [EmpleadoController::class,'exportRequisicionCPdf'])->name('requisicionC.pdf');
-Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
+Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados/detalle', [DetalleRequisicionController::class,'artempledos'])->name('artempleados');
+Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados-Pdf/detalle', [DetalleRequisicionController::class,'artempleadosPdf'])->name('artempleadosPdf');
+Route::middleware(['auth:sanctum', 'verified'])->get('art-areas/detalle', [DetalleRequisicionController::class,'artareas'])->name('artareas');
+Route::middleware(['auth:sanctum', 'verified'])->get('/areas-Pdf/detalle', [DetalleRequisicionController::class,'artareasPdf'])->name('artareasPdf');
+
+// prueb para requisicion Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
+//Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/detalle', [DetalleRequisicionController::class,'pruebaPdf'])->name('pruebaPdf');

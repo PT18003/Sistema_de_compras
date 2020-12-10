@@ -53,13 +53,7 @@ class EmpleadoController extends Controller
         return $pdf->download($name);
 
     }
-    public function pruebaPdf(Requisicion $requisicion)
-    {
-        $requisicion = Requisicion::where('id',$requisicion->id)->first();
-        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
-     
-        return view('pdf.requisicioncompra',compact('detalleRequisicion','requisicion'));
-    }
+    
     
     
 /*     public function getTowns(Request $request,$id)

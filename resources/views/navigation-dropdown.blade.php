@@ -14,7 +14,8 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> 
+                    @if (Auth::user()->admin())
                     <x-jet-nav-link href="{{ route('areatrabajos.index') }}" :active="request()->routeIs('areatrabajos.index')">
                         {{ __('Areas') }}
                     </x-jet-nav-link>
@@ -30,6 +31,11 @@
                     <x-jet-nav-link href="{{ route('generos.index') }}" :active="request()->routeIs('generos.index')">
                         {{ __('Generos') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
+                        {{ __('Roles') }}
+                    </x-jet-nav-link>    
+                    @endif
+                    
                     <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
                         {{ __('Empleados') }}
                     </x-jet-nav-link>
@@ -43,9 +49,7 @@
 {{--                     <x-jet-nav-link href="{{ route('articulosProveedores.index') }}" :active="request()->routeIs('articulosProveedores.index')">
                         {{ __('Articulos proveedores') }}
                     </x-jet-nav-link> --}}
-                    <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
-                        {{ __('Roles') }}
-                    </x-jet-nav-link>
+                    
                 </div>
             </div>
 

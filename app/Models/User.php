@@ -67,7 +67,7 @@ class User extends Authenticatable
     }
 
     public function admin() {
-        return $this->rol->nombre === 'admin';
+        return $this->rol->nombre === 'Admin';
     }
 
     public function emple() {

@@ -13,7 +13,7 @@ class AddModMunicipioToMunicipio extends Migration
      */
     public function up()
     {
-        Schema::table('municipio', function (Blueprint $table) {
+        Schema::table('Municipio', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -25,7 +25,7 @@ class AddModMunicipioToMunicipio extends Migration
      */
     public function down()
     {
-        Schema::table('municipio', function (Blueprint $table) {
+        Schema::table('Municipio', function (Blueprint $table) {
             //
         });
     }

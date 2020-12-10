@@ -33,7 +33,7 @@
             <span id="splash-overlay" class="splash"></span>
             <span id="welcome" class="z-depth-4"></span>
             
-            <header class="navbar-fixed"> 
+            <header class="navbar-fixed "> 
                 <nav class=" grey lighten-2">
                     <div class="col s12">
                         <ul class="right">
@@ -234,7 +234,7 @@
 
                 </div>
 
-                <div class="center-align">
+                <div class="center-align mt-4">
                     <!-- Dropdown Trigger -->
                       @if (Route::has('login'))
                

@@ -13,7 +13,7 @@ class AddModDepartamentosToDepartamentos extends Migration
      */
     public function up()
     {
-        Schema::table('departamento', function (Blueprint $table) {
+        Schema::table('Departamento', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -25,7 +25,7 @@ class AddModDepartamentosToDepartamentos extends Migration
      */
     public function down()
     {
-        Schema::table('departamento', function (Blueprint $table) {
+        Schema::table('Departamento', function (Blueprint $table) {
             //
         });
     }

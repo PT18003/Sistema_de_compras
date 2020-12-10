@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Models\Empleado;
+use App\Models\Rol;
 class UsuarioController extends Controller
 {
     use PasswordValidationRules;
     public function createIndex(Empleado $empleado)
     {
-        return view('auth.registro',compact('empleado'));
+        $roles= Rol::all();
+        return view('auth.registro',compact('empleado','roles'));
     }
     public function editIndex(Empleado $empleado)
     {
-        return view('auth.cambio',compact('empleado'));
+        $roles= Rol::all();
+        return view('auth.cambio',compact('empleado','roles'));
     }
     public function create(Request $request)
     {

@@ -83,7 +83,7 @@ class RolController extends Controller
     {
         $rol->nombre=$request->nombre;
         $rol->descripcion=$request->descripcion;
-        $->save();
+        $rol->save();
         return redirect()->route('roles.index');
     }
 

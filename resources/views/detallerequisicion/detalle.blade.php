@@ -83,7 +83,7 @@
                                     @endif
                                     
                                     @endforeach
-                                        @if ($permiso==1 )
+                                        @if ($permiso==1 && $requisicion->estado_req==2)
                                             <form action="{{route('requisiciones.ordenar',$requisicion)}}" method="post" autocomplete="off"> 
                                             @csrf
                                             @method('put')

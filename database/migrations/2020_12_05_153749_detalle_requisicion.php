@@ -18,6 +18,7 @@ class DetalleRequisicion extends Migration
             $table->unsignedBigInteger('requisicion_id')->unsigned();
             $table->integer('cantidad')->unsigned()->nullable(true);
             $table->char('tipoUnidad', 30)->default('unidad')->nullable(true);
+            $table->char('ordenCompra', 8)->nullable(true);
             $table->unsignedBigInteger('id_catalogo')->unsigned();
             $table->integer('estado_req')->default('0');
             $table->unsignedBigInteger('id_articuloProveedor')->unsigned()->nullable(true);

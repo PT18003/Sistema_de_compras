@@ -12,10 +12,15 @@ class DetalleRequisicion extends Model
     {
         return $this->belongsTo(Catalogo::class, 'id_catalogo');
     }
-
+    public function articuloProveedor()
+    {
+        return $this->belongsTo(ArticulosProveedor::class,'id_articuloProveedor');
+    }
      public function requisicion()
     {
         return $this->belongsTo(Requisicion::class, 'requisicion_id');
     }
+
+
 
 }

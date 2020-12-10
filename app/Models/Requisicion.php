@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Middleware\Emple;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +16,6 @@ class Requisicion extends Model
     public function articuloProveedor()
     {
         return $this->hasMany(DetalleRequisicion::class,'requisicion_id','id');
-
     }
     public function creado()
     {
@@ -25,4 +25,10 @@ class Requisicion extends Model
     {
         return $this->belongsTo(Empleado::class,'aceptado_id');
     }
+    public function encargado()
+    {
+        return $this->belongsTo(Empleado::class,'encargado_id');
+    }
+    
+
 }

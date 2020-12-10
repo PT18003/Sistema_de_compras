@@ -13,6 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id');//para el ID
+            $table->string('nombre',100)->nullable(false);//de tipo string y que no acepte valores nulos
+            $table->string('descripcion',200)->nullable(false);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -20,10 +28,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->bigInteger('id_rol')->unsigned();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();            
             $table->timestamps();
-          
+
+            $table->foreign('id_rol')->references('id')->on('roles');
         });
     }
 

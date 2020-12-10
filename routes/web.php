@@ -142,6 +142,10 @@ Route::middleware(['auth:sanctum', 'verified'])->post('catalogos/edit', [Catalog
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones', [RequisicionController::class,'index'])->name('requisiciones.index');
 Route::middleware(['auth:sanctum', 'verified'])->post('requisiciones', [RequisicionController::class,'create'])->name('requisiciones.create');
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/send', [RequisicionController::class,'send'])->name('requisiciones.send');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/aceptar', [RequisicionController::class,'aceptar'])->name('requisiciones.aceptar');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/detalle/demegar', [RequisicionController::class,'denegar'])->name('requisiciones.denegar');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/{requisicion}/ordenar', [RequisicionController::class,'ordenar'])->name('requisiciones.ordenar');
+
 //detalle requisicion
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/agregar', [DetalleRequisicionController::class,'index'])->name('detallerequisiciones.index');
 Route::middleware(['auth:sanctum', 'verified'])->post('requisiciones/{requisicion}/agregar',[DetalleRequisicionController::class,'store'])->name('detallerequisiciones.store');//agregar a la requisicion
@@ -149,7 +153,45 @@ Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/detalle/{detallerequisicion}',[DetalleRequisicionController::class,'edit'])->name('detallerequisiciones.edit');
 Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/detallerequisicion/actualizar/{detallerequisicion}', [DetalleRequisicionController::class,'update'])->name('detallerequisiciones.update');
 Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/detallerequisicion/destroy/{detallerequisicion}',[DetalleRequisicionController::class,'destroy'])->name('detallerequisiciones.destroy');
+Route::middleware(['auth:sanctum', 'verified'])->get('requisiciones/{requisicion}/detalle/{detallerequisicion}/agregararticulo',[DetalleRequisicionController::class,'agregararticulo'])->name('detallerequisiciones.agregararticulo');
+Route::middleware(['auth:sanctum', 'verified'])->put('requisiciones/requisicion/detalle/{detallerequisicion}/agregararticulo/{articuloproveedor}',[DetalleRequisicionController::class,'agregararticuloproveedor'])->name('detallerequisiciones.agregararticuloproveedor');
 
+
+
+//Roles
+Route::get('roles', [RolController::class,'index'])->name('roles.index');
+Route::get('roles/create', [RolController::class,'create'])->name('roles.create');
+Route::post('roles',[RolController::class,'store'])->name('roles.store');
+Route::put('roles/{rol}', [RolController::class,'update'])->name('roles.update');
+Route::get('roles/{rol}/edit', [RolController::class,'edit'])->name('roles.edit');
+Route::get('roles/delete/{rol}/', [RolController::class,'destroy'])->name('roles.destroy');
+
+/**
+* Solo tienen acceso usuarios logueados.
+*/
+Route::group(['middleware' => 'auth'], function() { 
+
+
+/**
+* Solo tienen acceso usuarios con rol de Administrador.
+*/
+Route::group(['middleware' => 'admin'], function() {
+// agregar todas las rutas referentes al rol de Administrador 
+
+    });
+
+/**
+* Solo tienen acceso usuarios con rol de Empleado.
+*/
+Route::group(['middleware' => 'emple'], function() {
+// agregar todas las rutas referentes al rol de Empleado 
+
+    });
+
+
+// prueb para requisicion Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
+//Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/detalle', [DetalleRequisicionController::class,'pruebaPdf'])->name('pruebaPdf');
+});
 
 //PDF x2
 Route::middleware(['auth:sanctum', 'verified'])->get('requisicion-c-pdf/{requisicion}/detalle', [EmpleadoController::class,'exportRequisicionCPdf'])->name('requisicionC.pdf');
@@ -157,6 +199,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados/detalle', [D
 Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados-Pdf/detalle', [DetalleRequisicionController::class,'artempleadosPdf'])->name('artempleadosPdf');
 Route::middleware(['auth:sanctum', 'verified'])->get('art-areas/detalle', [DetalleRequisicionController::class,'artareas'])->name('artareas');
 Route::middleware(['auth:sanctum', 'verified'])->get('/areas-Pdf/detalle', [DetalleRequisicionController::class,'artareasPdf'])->name('artareasPdf');
-
-// prueb para requisicion Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
-//Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/detalle', [DetalleRequisicionController::class,'pruebaPdf'])->name('pruebaPdf');

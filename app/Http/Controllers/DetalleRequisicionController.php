@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Requisicion;
 use App\Models\Catalogo;
+use App\Models\ArticulosProveedor;
 use Illuminate\Http\Request;
 use App\Models\DetalleRequisicion;
-use App\Models\Empleado;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\AreaTrabajo;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Empleado;
 
 
 use Barryvdh\DomPDF\Facade as PDF;
@@ -45,29 +48,96 @@ class DetalleRequisicionController extends Controller
     }
     public function detalle(Requisicion $requisicion)
     {
-        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
-        $cuentadetalle = DetalleRequisicion::where('requisicion_id',$requisicion->id)->count();
-        $cont =0;
-        foreach ($detalleRequisicion as $item)
+        $empleado = Auth::user()->empleado_id;
+        $empleadobuscar = Empleado::find($empleado)->areatrabajo_id;
+        if($empleadobuscar==3)
         {
-            if($item->cantidad == NULL || $item->tipoUnidad == NULL)
+            $acceso =3;
+            $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+            $cuentadetalle = DetalleRequisicion::where('requisicion_id',$requisicion->id)->count();
+            $cont =0;
+            foreach ($detalleRequisicion as $item)
             {
-               
+                if($item->cantidad == NULL || $item->tipoUnidad == NULL)
+                {
+                   
+                }
+                else
+                {
+                    $cont=1+$cont;
+                }
+            }
+            if($cont==$cuentadetalle)
+            {
+                $permiso=1;
             }
             else
             {
-                $cont=1+$cont;
+                $permiso=0;
             }
-        }
-        if($cont==$cuentadetalle)
-        {
-            $permiso=1;
+            return view('detallerequisicion.detalle', compact('detalleRequisicion','permiso','requisicion','acceso'));
+    
         }
         else
         {
-            $permiso=0;
+            if($empleadobuscar==2)
+            {
+                $acceso=2;
+                $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+                $cuentadetalle = DetalleRequisicion::where('requisicion_id',$requisicion->id)->count();
+                $cont =0;
+                foreach ($detalleRequisicion as $item)
+                {
+                    if($item->id_articuloProveedor == NULL)
+                    {
+                       
+                    }
+                    else
+                    {
+                        $cont=1+$cont;
+                    }
+                }
+                if($cont==$cuentadetalle)
+                {
+                    $permiso=1;
+                }
+                else
+                {
+                    $permiso=0;
+                }
+                //return $detalleRequisicion;
+                return view('detallerequisicion.detalle', compact('detalleRequisicion','permiso','requisicion','acceso'));
+    
+            }
+            else
+            {
+                $acceso=1;
+                $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+                $cuentadetalle = DetalleRequisicion::where('requisicion_id',$requisicion->id)->count();
+                $cont =0;
+                foreach ($detalleRequisicion as $item)
+                {
+                    if($item->cantidad == NULL || $item->tipoUnidad == NULL)
+                    {
+                       
+                    }
+                    else
+                    {
+                        $cont=1+$cont;
+                    }
+                }
+                if($cont==$cuentadetalle)
+                {
+                    $permiso=1;
+                }
+                else
+                {
+                    $permiso=0;
+                }
+                return view('detallerequisicion.detalle', compact('detalleRequisicion','permiso','requisicion','acceso'));
+    
+            }    
         }
-        return view('detallerequisicion.detalle', compact('detalleRequisicion','permiso','requisicion'));
     }
     public function edit(Requisicion $requisicion, DetalleRequisicion $detallerequisicion)
     {
@@ -91,6 +161,27 @@ class DetalleRequisicionController extends Controller
         $detallerequisicion->delete();
         return redirect()->route('detallerequisiciones.detalle',[$detallerequisicion->requisicion_id ]);
     }
+    public function agregararticulo(Requisicion $requisicion, DetalleRequisicion $detallerequisicion)
+    {
+        $now = date('Y-m-d');
+        $articuloproveedores = ArticulosProveedor::where('id_catalogo','=',$detallerequisicion->id_catalogo)
+        ->where('precio','!=',NULL)
+        ->where('fechaInicio','<=',$now)
+        ->where('fechaFinal','>=',$now)
+        ->orderBy('precio', 'asc')
+        ->get();
+
+        //return $articuloproveedores;
+
+        return view('detallerequisicion.agregararticulo',compact('detallerequisicion', 'requisicion','articuloproveedores'));
+    }
+    public function agregararticuloproveedor(Request $request, DetalleRequisicion $detallerequisicion ,ArticulosProveedor $articuloproveedor)
+    {
+        $detallerequisicion->id_articuloProveedor = $articuloproveedor->id;
+        $detallerequisicion->save();
+        return redirect()->route('detallerequisiciones.detalle',[$detallerequisicion->requisicion_id ]);
+    }
+  
 
     public function artempledos()
     {

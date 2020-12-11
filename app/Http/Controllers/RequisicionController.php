@@ -177,7 +177,9 @@ class RequisicionController extends Controller
                 }
             }
             $requisicion->estado_req=4;
+            $requisicion->encargado_id=Auth::user()->empleado_id;
             $requisicion->save();
+            return redirect()->route('detallerequisiciones.detalle',[$requisicion->id]);
         }
     }
 }

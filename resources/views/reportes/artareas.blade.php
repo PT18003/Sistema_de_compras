@@ -50,16 +50,19 @@
                                            
                                             <span class="badge bg-info text-light"> Enviada</span>
                                             <span class="text-right"><a class=" badge bg-success text-light text-right" href="{{route('detallerequisiciones.detalle',$elemento->id)}}">Consultar</a></span>
+                                            
+                                                @if($elemento->aceptado_id!=null)
+                                                    <span class="badge bg-primrary text-light">Aceptada   {{$elemento->fechaAceptada}} </span>
+                                                  
+                                                  
+                                                @else
+                                                     <span class="badge bg-danger text-light">No Aceptada</span>
+                                                @endif
+                                                
                                             @else
-                                           <span class="badge bg-secondary text-light">No Enviada</span>
+                                            <span class="badge bg-secondary text-light">No Enviada</span>
                                             @endif
-                                            @if($elemento->aceptado_id!=null)
-                                            {
-                                                {{$elemento->aceptado_id}}
-                                                {{$elemento->fechaAceptada}}
-                                            }
-                                        
-                                            @endif
+                                          
                                             
                                               
                                            

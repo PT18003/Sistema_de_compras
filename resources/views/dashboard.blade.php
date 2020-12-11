@@ -117,13 +117,13 @@
                                         <div class="col-7">
                                             <div class="numbers">
                                                 <p class="card-category">Empleados</p>
-                                                <h4 class="card-title">123</h4>
+                                                <h4 class="card-title">{{$countempleados}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                      <hr>
                                     <div class="stats">
-                                         <i class="mdi mdi-credit-card-outline float-right"></i><a href="{{route('artempleados')}}">Consultar articulos solicitados por empleados.</a>
+                                         <i class="mdi mdi-credit-card-outline float-right"></i><a href="{{route('artempleados')}}">Articulos solicitados por empleados.</a>
                                     </div>
                                 </div>
                                
@@ -141,13 +141,13 @@
                                         <div class="col-7">
                                             <div class="numbers">
                                                 <p class="card-category">Areas</p>
-                                                <h4 class="card-title"> 12</h4>
+                                                <h4 class="card-title"> {{$countareas}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                      <hr>
                                     <div class="stats">
-                                         <i class="mdi mdi-credit-card-outline float-right"></i> <a href="{{route('artareas')}}">Consultar articulos solicitados por areas de trabajo.</a>
+                                         <i class="mdi mdi-credit-card-outline float-right"></i> <a href="{{route('artareas')}}">Articulos solicitados por areas de trabajo.</a>
                                     </div>
                                 </div>
                                
@@ -165,14 +165,19 @@
                                         <div class="col-7">
                                             <div class="numbers">
                                                 <p class="card-category">Proveedores</p>
-                                                <h4 class="card-title">23</h4>
+                                                <h4 class="card-title">{{$countproveedores}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                       <hr>
                                       
                                     <div class="stats">
-                                        <i class="fa fa-clock-o"></i> <a href="">Reporte de pedidos por proveedores</a>
+                                    <ul>
+                                    <li>
+                                        <i class="fa fa-clock-o"></i> <a href="{{route('proveedorC')}}">Pedidos por proveedores</a>
+                                        </li>
+                                        <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href="{{route('preciosC')}}">Precios vigentes</a></li>
+                                    </ul>
                                     </div>
                                 </div>
                               
@@ -190,16 +195,16 @@
                                         <div class="col-7">
                                             <div class="numbers">
                                                 <p class="card-category">Articulos</p>
-                                                <h4 class="card-title">45</h4>
+                                                <h4 class="card-title">{{$countarticulos}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="stats">
                                     <ul>
-                                    <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href=""> Reporte de precios vigentes</a></li>
-                                     <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href="">Reporte de stock de iventario</a></li>
-                                     <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href=""> Reporte de Inventario</a></li>
+                                    
+                                    <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href="">[Falta] Stock de iventario</a></li>
+                                    <li> <i class="mdi  mdi-credit-card-outline float-right"></i> <a href="">[Falta] Reporte de Inventario</a></li>
                                      
                                      
 

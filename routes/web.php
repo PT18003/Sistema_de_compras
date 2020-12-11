@@ -28,11 +28,12 @@ use App\Http\Controllers\RolController;
 
 Route::get('/', function () {return view('welcome');})->name('index');
 //del dashboard
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+
 
 /* Se pueden usar el metodo resourse para ahorrar lineas de codigo en una sola 
 pero hay que usar las convecciones que laravel nos da v: */
-
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [EmpleadoController::class,'dashboard'])->name('dashboard');
 
 /**
 * Solo tienen acceso usuarios logueados.
@@ -189,7 +190,8 @@ Route::group(['middleware' => 'emple'], function() {
 
 
 // prueb para requisicion Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
-//Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/detalle', [DetalleRequisicionController::class,'pruebaPdf'])->name('pruebaPdf');
+//
+
 });
 
 //PDF x2
@@ -198,3 +200,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados/detalle', [D
 Route::middleware(['auth:sanctum', 'verified'])->get('art-empleados-Pdf/detalle', [DetalleRequisicionController::class,'artempleadosPdf'])->name('artempleadosPdf');
 Route::middleware(['auth:sanctum', 'verified'])->get('art-areas/detalle', [DetalleRequisicionController::class,'artareas'])->name('artareas');
 Route::middleware(['auth:sanctum', 'verified'])->get('/areas-Pdf/detalle', [DetalleRequisicionController::class,'artareasPdf'])->name('artareasPdf');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('proveedor-c/detalle', [DetalleRequisicionController::class,'proveedorC'])->name('proveedorC');
+Route::middleware(['auth:sanctum', 'verified'])->get('proveedor-c-pdf/detalle', [DetalleRequisicionController::class,'proveedorCPdf'])->name('proveedorCPdf');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('precios-c/detalle', [ArticulosProveedorController::class,'preciosC'])->name('preciosC');
+Route::middleware(['auth:sanctum', 'verified'])->get('precios-c-pdf/detalle', [ArticulosProveedorController::class,'preciosCPdf'])->name('preciosCPdf');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('oreden-compra-pdf/{requisicion}/detalle', [EmpleadoController::class,'exportOrdenPdf'])->name('ordenPdf');
+Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
+

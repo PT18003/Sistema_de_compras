@@ -27,7 +27,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="6"> <p class="h3 text-center">Articulos de mi requisicion</p></th>
+                                        <th colspan="6"> <p class="h3 text-center">Articulos de la orden de compra</p></th>
                                     </tr>
                                     <tr>
                                         <th scope="col">Articulo</th>
@@ -93,7 +93,7 @@
                                     @endif
                                     
                                     @endforeach
-                                        @if ($permiso==1 )
+                                        @if ($permiso==1 && $requisicion->estado_req==2)
                                             <form action="{{route('requisiciones.ordenar',$requisicion)}}" method="post" autocomplete="off"> 
                                             @csrf
                                             @method('put')
@@ -117,7 +117,8 @@
                             </form>
                             
                             @endif
-
+                                <a href="{{route('ordenPdf',$requisicion)}}" class="btn btn-info">Generar pdf</a>
+                                <a href="{{route('pruebaPdf',$requisicion)}}" class="btn btn-info">Ver pdf</a>
                         </div>
                     @else
                     <div class="table-responsive mt-4">

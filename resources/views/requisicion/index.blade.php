@@ -57,6 +57,8 @@
                                                     @else
                                                         @if ($item->estado_req==3)
                                                             <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-danger">Rechazada</a>
+                                                        @else
+                                                            <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-primary">Orden Realizada</a>
                                                         @endif
                                                     @endif
                                                 @endif
@@ -106,7 +108,8 @@
                                                 <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-warning">Pendiente</a>
                                             @else
                                                 @if ($item->estado_req==4)
-                                                    <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-Success">Realizada</a>
+                                                    <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-primary">Orden Realizada</a>
+                                                    
                                                 @endif
                                             @endif
                                     
@@ -160,7 +163,14 @@
                                                                 <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-success">Aceptada</a>
                                                             @else
                                                                 @if ($item->estado_req==3)
-                                                                    <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-danger">Rechazada</a>
+                                                                    <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-danger">Rechazada</a>  
+                                                                @else
+                                                                    @if ($item->estado_req==4)
+                                                                    <a href="{{route('detallerequisiciones.detalle',$item->id)}}" class="badge badge-primary">Orden Realizada</a>
+                                                                    @else
+                                                                        
+                                                                    @endif
+                                                                        
                                                                 @endif
                                                             @endif
                                                         @endif

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\AreaTrabajo;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Empleado;
-
+use App\Models\Proveedor;
 
 use Barryvdh\DomPDF\Facade as PDF;
 class DetalleRequisicionController extends Controller
@@ -233,13 +233,34 @@ class DetalleRequisicionController extends Controller
         return $pdf->download($name);
     
     }
-    public function pruebaPdf()
+    public function proveedorC()
     {
-        $empleados = Empleado::get();
-        $suma = DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
-        ->join('Empleados','requisiciones.creado_id','=','Empleados.id')->select('Empleados.id','Empleados.nombres','Empleados.apellidos',DB::raw('Sum(detalleRequisicion.cantidad) as total'))
-        ->groupBy('Empleados.id','Empleados.nombres','Empleados.apellidos')->get();
-
-        return view('pdf.artempleados', compact('empleados','suma'));
+        $proveedores = Proveedor::get();
+        $join =DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('articulos_proveedores','detalleRequisicion.id_articuloProveedor','=','articulos_proveedores.id')
+        ->join('proveedores','proveedores.id','=','articulos_proveedores.id_proveedor')
+        ->select('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id as rid','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->groupBy('detalleRequisicion.ordenCompra','proveedores.id','detalleRequisicion.cantidad','requisiciones.id','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->get();
+        
+        
+        return view('reportes.proveedoresC', compact('proveedores','join'));
     }
+    public function proveedorCPdf()
+    {
+        $proveedores = Proveedor::get();
+        $join =DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('articulos_proveedores','detalleRequisicion.id_articuloProveedor','=','articulos_proveedores.id')
+        ->join('proveedores','proveedores.id','=','articulos_proveedores.id_proveedor')
+        ->select('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id as rid','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->groupBy('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->get();
+        
+       
+        $name = 'reporte-ordenes-proveedores.pdf';
+      
+        $pdf = PDF::loadView('pdf.proveedoresCPdf',  compact('proveedores','join'));
+        return $pdf->download($name);
+    }
+   
 }

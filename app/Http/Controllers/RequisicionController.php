@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Node\Builder;
 use PhpParser\Node\Stmt\Else_;
 use Svg\Tag\Rect;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionProveedor;
 class RequisicionController extends Controller
 {
     public function index()
@@ -120,6 +121,11 @@ class RequisicionController extends Controller
         $requisicion->aceptado_id=$empleado;
         $requisicion->save();
         return redirect()->route('requisiciones.index');
+    }
+    public function correoProveedor ()
+    {
+        $receivers = 'migue.galdamez@hotmail.com';
+        Mail::to($receivers)->send(new NotificacionProveedor());
     }
     public function ordenar(Request $request, Requisicion $requisicion)
     {

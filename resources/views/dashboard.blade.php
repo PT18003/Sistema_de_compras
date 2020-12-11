@@ -98,6 +98,7 @@
             </div>                     
         </div>
     </div> 
+    <a href="{{route('correoProveedor')}}">Enviar Correo</a>
 </div>
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">

@@ -211,3 +211,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('precios-c-pdf/detalle', [A
 Route::middleware(['auth:sanctum', 'verified'])->get('oreden-compra-pdf/{requisicion}/detalle', [EmpleadoController::class,'exportOrdenPdf'])->name('ordenPdf');
 Route::middleware(['auth:sanctum', 'verified'])->get('pruebaPdf/{requisicion}/detalle', [EmpleadoController::class,'pruebaPdf'])->name('pruebaPdf');
 
+//correo
+Route::middleware(['auth:sanctum', 'verified'])->get('correo/proveedor', [RequisicionController::class,'correoProveedor'])->name('correoProveedor');

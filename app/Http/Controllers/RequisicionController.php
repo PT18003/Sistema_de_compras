@@ -122,6 +122,8 @@ class RequisicionController extends Controller
         $requisicion->save();
         return redirect()->route('requisiciones.index');
     }
+    //solo cambiar el destinatario traerlo ccon variable y modificar las vista, pasarle argumento
+    //  asi Mail::to($receivers)->send(new NotificacionProveedor($variable));
     public function correoProveedor ()
     {
         $receivers = 'migue.galdamez@hotmail.com';

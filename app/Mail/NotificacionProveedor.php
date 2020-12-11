@@ -19,11 +19,11 @@ class NotificacionProveedor extends Mailable
      *
      * @return void
      */
-    //public function __construct(DetalleRequisicion $ordenPedido)
+    //ejemplo implementacion public function __construct(DetalleRequisicion $ordenPedido)
     public function __construct()
     {
         //
-       // $this->$ordenPedido = $ordenPedido;
+       //ejemplo implementacion $this->$ordenPedido = $ordenPedido;
     }
 
     /**

@@ -40,33 +40,53 @@
                                
                                     @foreach($elemento->requisicionesEmpleado as $requi)
                                     <div class="card">
-                                        <div class="card-body mt-2 mb-2 card-block">
-                                            
+                                       
+                                               
                                             <?php 
                                             $sumar = 0;                                        
                                             foreach($requi->articuloProveedor as $detalle)
                                             $sumar= $sumar+ $detalle->cantidad
                                             ?> 
+                                            <p>
                                             <b>Articulos: </b>{{$sumar}}
-                                            <b>Creada: </b>{{$requi->created_at}}
+                                            <b>Creada: </b>    
+                                            <?php
+                                                $date_now = $requi->created_at;
+                                                $date_future = strtotime($date_now);
+                                                $date_future = date('d-m-Y', $date_future);
+                                                echo $date_future;
+                                            ?>
+                                            <br>
                                             
-                                            @if($requi->estado_req==1)
-                                           
-                                            <span class="badge bg-info text-light"> Enviada</span>
-                                           
+                                              @if($requi->estado_req==0)
+                                                 <span class="badge bg-secondary text-light">No Enviada</span>
                                             @else
-                                           <span class="badge bg-secondary text-light">No Enviada</span>
-                                            @endif
-                                            @if($requi->aceptado_id!=null)
-                                            {
-                                                {{$requi->aceptado_id}}
-                                                {{$requi->fechaAceptada}}
-                                            }
+                                          
+                                              
+                                            <span class="badge bg-info text-light"> Enviada</span>
+                                                @if($requi->aceptado_id!=null)
+                                                    <span class="badge bg-primary text-light">Aceptada  
+                                                    
+                                                         <?php
+                                                $date_now = $requi->updated_at;
+                                                $date_future = strtotime($date_now);
+                                                $date_future = date('d-m-Y', $date_future);
+                                                echo $date_future;
+                                            ?>
                                         
+                                             </span>
+                                                  
+                                                  
+                                                @else
+                                                     <span class="badge bg-danger text-light">No Aceptada</span>
+                                                @endif
+                                                 
                                             @endif
+                                             </p>
                                            
                                            
-                                        </div>
+                                           
+                                     
                                     </div>
 
                                     @endforeach

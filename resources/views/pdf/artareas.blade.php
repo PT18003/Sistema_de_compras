@@ -43,37 +43,56 @@
                                         
                                         @if($elemento->creado->areatrabajo_id == $item->areatrabajo_id)
                                             
-                                                <div class="card mt-2 mb-2 card-block">
-                                                    <div class="card-body">
+                                                <div class="card">
+                                                
                                                 
                                                         <?php 
                                                         $sumar = 0;                                        
                                                         foreach($elemento->articuloProveedor as $detalle)
                                                         $sumar= $sumar+ $detalle->cantidad
-                                                        ?> 
+                                                        
+                                                        ?>
+                                                        <p> 
                                                         <b>Articulos: </b>{{$sumar}}
 
-                                                        <b>Creada: </b>{{$elemento->created_at}}
+                                                        <b>Creada: </b>
+                                                            <?php
+                                                                $date_now = $elemento->created_at;
+                                                                $date_future = strtotime($date_now);
+                                                                $date_future = date('d-m-Y', $date_future);
+                                                                echo $date_future;
+                                                            ?>
+                                                            <br>
+                                                     
 
-                                                        @if($elemento->estado_req==1)
-                                                    
-                                                        <span class="badge bg-info text-light"> Enviada</span>
-                                                      
-                                                        @else
-                                                    <span class="badge bg-secondary text-light">No Enviada</span>
-                                                        @endif
-                                                        @if($elemento->aceptado_id!=null)
-                                                        {
-                                                            {{$elemento->aceptado_id}}
-                                                            {{$elemento->fechaAceptada}}
-                                                        }
-                                                    
-                                                        @endif
+                                                            @if($elemento->estado_req==0)
+                                                            <span class="badge bg-secondary text-light">No Enviada</span>
+
+                                                            @else
+                                                        
+                                                            <span class="badge bg-info text-light"> Enviada</span>
+                                                            @if($elemento->aceptado_id!=null)
+                                                                    <span class="badge bg-primary text-light">Aceptada   
+                                                                    
+                                                                        <?php
+                                                                            $date_now = $elemento->fechaAceptada;
+                                                                            $date_future = strtotime($date_now);
+                                                                            $date_future = date('d-m-Y', $date_future);
+                                                                            echo $date_future;
+                                                                        ?>
+                                                                        </span>
+                      
+                                                                
+                                                                @else
+                                                                    <span class="badge bg-danger text-light">No Aceptada</span>
+                                                                @endif
+                                                            @endif
+                                                            </p>
                                                         
                                                         
                                                     
                                                     
-                                                    </div>
+                                                
                                                 </div>
                                             
                                             

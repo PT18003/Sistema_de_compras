@@ -7,6 +7,8 @@ use App\Models\Catalogo;
 use Illuminate\Http\Request;
 use App\Models\Inventario;
 use App\Models\Proveedor; 
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
 
 class ArticulosProveedorController extends Controller
 {
@@ -90,6 +92,44 @@ class ArticulosProveedorController extends Controller
     {
         $articuloProveedor->delete();
         return redirect()->route('articulosProveedores.index',[$articuloProveedor->id_proveedor]);
+    }
+    public function preciosC()
+    {
+        $now = date('Y-m-d');
+        $proveedores = Proveedor::get();
+      
+        $precios = DB::table('articulos_proveedores')
+        ->join('proveedores','articulos_proveedores.id_proveedor','=','proveedores.id')
+        ->join('catalogos','articulos_proveedores.id_catalogo','=','catalogos.id')
+        ->select('articulos_proveedores.id','proveedores.nombre as Nproveedor','catalogos.nombre as Ncatalogo','articulos_proveedores.id_proveedor','articulos_proveedores.fechaInicio','articulos_proveedores.fechaFinal','articulos_proveedores.descuento','articulos_proveedores.precio')
+        ->whereNotNull('articulos_proveedores.fechaFinal')
+        ->where('fechaInicio','<=',$now)
+        ->where('fechaFinal','>=',$now)
+        ->groupby('articulos_proveedores.id','proveedores.nombre','catalogos.nombre','articulos_proveedores.id_proveedor','articulos_proveedores.fechaInicio','articulos_proveedores.fechaFinal','articulos_proveedores.descuento','articulos_proveedores.precio')
+        ->get();
+        
+        
+        return view('reportes.preciosR', compact('proveedores','precios'));
+    }
+    public function preciosCPdf()
+    {
+        $now = date('Y-m-d');
+        $proveedores = Proveedor::get();
+      
+        $precios = DB::table('articulos_proveedores')
+        ->join('proveedores','articulos_proveedores.id_proveedor','=','proveedores.id')
+        ->join('catalogos','articulos_proveedores.id_catalogo','=','catalogos.id')
+        ->select('articulos_proveedores.id','proveedores.nombre as Nproveedor','catalogos.nombre as Ncatalogo','articulos_proveedores.id_proveedor','articulos_proveedores.fechaInicio','articulos_proveedores.fechaFinal','articulos_proveedores.descuento','articulos_proveedores.precio')
+        ->whereNotNull('articulos_proveedores.fechaFinal')
+        ->where('fechaInicio','<=',$now)
+        ->where('fechaFinal','>=',$now)
+        ->groupby('articulos_proveedores.id','proveedores.nombre','catalogos.nombre','articulos_proveedores.id_proveedor','articulos_proveedores.fechaInicio','articulos_proveedores.fechaFinal','articulos_proveedores.descuento','articulos_proveedores.precio')
+        ->get();
+       
+        $name = 'reporte-precios-vigentes.pdf';
+      
+        $pdf = PDF::loadView('pdf.preciosR', compact('proveedores','precios'));
+        return $pdf->download($name);
     }
 
 }

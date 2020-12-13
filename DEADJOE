@@ -1,0 +1,46 @@
+
+*** These modified files were found in JOE when it aborted on Wed Dec  9 19:02:50 2020
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+/var/www/html/.git/MERGE_MSG
+
+*** File '/var/www/html/.git/MERGE_MSG'
+Merge
+branch 'prueba2' of https://github.com/PT18003/Sistema_de_compras into miguel_linus
+
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Thu Dec 10 21:10:54 2020
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+/var/www/html/.git/MERGE_MSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Fri Dec 11 00:50:32 2020
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+/var/www/html/.git/MERGE_MSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc

@@ -9,43 +9,43 @@
             <div class="container card-body ">                  
                 <div class="branding">
                     <h1>Detalle de mi requisicion</h1>
-                    <p>  <a class="" href="{{route('detallerequisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                 
+                    @if($requisicion->estado_req===0)
+                    
+                        <p>  <a class="" href="{{route('detallerequisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                     
+                    @elseif($requisicion->estado_req===1)
+                    
+                        <p>  <a class="" href="{{route('requisiciones.index',$requisicion)}}" role="button">Regresar.</a></p>
+                     
+                    @endif
+
                 </div>
                 <div class="">
                     @if ($acceso==2){{-- VISTA SOLO PARA LOS QUE SON DE COMPRAS --}}
-                        @if ($requisicion->estado_req==2)
-                            <div class="table-responsive mt-4">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="6"> <p class="h3 text-center">Articulos de mi requisicion</p></th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Articulo</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Unidad</th>
-                                            <th scope="col">Articulo Proveedor</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($detalleRequisicion as $item)
-                                        <tr>
-                                            <td >{{$item->catalogo->nombre}}</td>
-                                            <td>
-                                                @if ($item->cantidad !=NULL)
-                                                {{$item->cantidad}}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>{{$item->tipoUnidad}}</td>
-                                            @if ($item->id_articuloProveedor==NULL)
-                                                <td><a href="{{route('detallerequisiciones.agregararticulo',[$item->requisicion_id, $item->id])}}" class="badge badge-warning">Agrear</a></td>
-                                            @else   
-                                                <td>
-                                                    <a href="#" class="badge badge-dark" data-toggle="modal" data-target="#exampleModal{{$item->id}}">Mostrar</a>-
-                                                    <a href="{{route('detallerequisiciones.agregararticulo',[$item->requisicion_id, $item->id])}}" class="badge badge-warning">Cambiar</a>
-                                                </td>
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6"> <p class="h3 text-center">Articulos de la orden de compra</p></th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Articulo</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Articulo Proveedor</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($detalleRequisicion as $item)
+                                    <tr>
+                                        <td >{{$item->catalogo->nombre}}</td>
+                                        <td>
+                                            @if ($item->cantidad !=NULL)
+                                            {{$item->cantidad}}
+                                            @else
+                                                -
                                             @endif
                                         </tr>
                                         @if ($item->id_articuloProveedor==NULL)
@@ -130,7 +130,9 @@
                             @else
                             
                             @endif
-                        @endif
+                                <a href="{{route('ordenPdf',$requisicion)}}" class="btn btn-info">Generar pdf</a>
+                                <a href="{{route('pruebaPdf',$requisicion)}}" class="btn btn-info">Ver pdf</a>
+                        </div>
                     @else
                     <div class="table-responsive mt-4">
                         <table class="table table-bordered">
@@ -230,8 +232,10 @@
                         @endif
 
                     </div>
+
+                    <a href="{{route('requisicionC.pdf',$requisicion)}}" class="btn btn-info">Generar pdf</a>
                     @endif
-   
+
                 </div>
 
             </div>                     

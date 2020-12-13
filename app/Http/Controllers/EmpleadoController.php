@@ -7,10 +7,15 @@ use App\Models\Departamento;
 use App\Models\EstadoCivil;
 use App\Models\Genero;
 use App\Models\AreaTrabajo;
+use App\Models\Requisicion;
+use App\Models\Catalogo;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpleadoCreate;
+
+use App\Models\DetalleRequisicion;
 
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -26,17 +31,60 @@ class EmpleadoController extends Controller
         $areatrabajo = AreaTrabajo::all();
         return view('empleados.create',compact('municipios','estadocivil','departamentos','generos','areatrabajo'));
     }
+    public function dashboard()
+    {
+        $countempleados = Empleado::count();
+        $countareas = AreaTrabajo::count();
+        $countproveedores = Proveedor::count();
+        $countarticulos = Catalogo::count();
+        return view('dashboard',compact('countempleados','countareas','countproveedores','countarticulos'));
+    }
     public function exportPdf()
     {
         $empleados = Empleado::get();
-        $pdf = PDF::loadView('pdf.empleados',compact('empleados'));
+        $requisiciones = Requisicion::get();
+        $pdf = PDF::loadView('pdf.empleados',compact('empleados'),compact('requisiciones'));
         return $pdf->download('empleados-list.pdf');
     }
     public function doc()
     {
         $empleados=Empleado::get();
-        return view('pdf.empleados', compact('empleados'));
+        $requisiciones = Requisicion::get();
+        return view('pdf.empleados', compact('empleados'),compact('requisiciones'));
     }
+
+    public function exportRequisicionCPdf(Requisicion $requisicion)
+    {
+        $requisicion = Requisicion::where('id',$requisicion->id)->first();
+        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+        $name = 'comprobante-requisicion-'.$requisicion->id.'.pdf';
+      
+        $pdf = PDF::loadView('pdf.requisicioncompra',compact('detalleRequisicion','requisicion'));
+        return $pdf->download($name);
+
+    }
+    public function pruebaPdf(Requisicion $requisicion)
+    {
+        $requisicion = Requisicion::where('id',$requisicion->id)->first();
+        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+        $name = 'comprobante-requisicion-'.$requisicion->id.'.pdf';
+      
+      
+
+
+        return view('pdf.ordencompra',compact('detalleRequisicion','requisicion'));
+    }
+    
+    public function exportOrdenPdf(Requisicion $requisicion)
+    {
+        $requisicion = Requisicion::where('id',$requisicion->id)->first();
+        $detalleRequisicion = DetalleRequisicion::where('requisicion_id',$requisicion->id)->get();
+        $name = 'comprobante-orden-'.$requisicion->id.'.pdf';
+      
+        $pdf = PDF::loadView('pdf.ordencompra',compact('detalleRequisicion','requisicion'));
+        return $pdf->download($name);
+    }
+    
     
 /*     public function getTowns(Request $request,$id)
     {

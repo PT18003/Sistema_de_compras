@@ -14,7 +14,9 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> 
+                   
+                    @if (Auth::user()->admin())
                     <x-jet-nav-link href="{{ route('areatrabajos.index') }}" :active="request()->routeIs('areatrabajos.index')">
                         {{ __('Areas') }}
                     </x-jet-nav-link>
@@ -30,6 +32,11 @@
                     <x-jet-nav-link href="{{ route('generos.index') }}" :active="request()->routeIs('generos.index')">
                         {{ __('Generos') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
+                        {{ __('Roles') }}
+                    </x-jet-nav-link>    
+                    @endif
+                    
                     <x-jet-nav-link href="{{ route('empleados.index') }}" :active="request()->routeIs('empleados.index')">
                         {{ __('Empleados') }}
                     </x-jet-nav-link>
@@ -43,9 +50,7 @@
 {{--                     <x-jet-nav-link href="{{ route('articulosProveedores.index') }}" :active="request()->routeIs('articulosProveedores.index')">
                         {{ __('Articulos proveedores') }}
                     </x-jet-nav-link> --}}
-                    <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
-                        {{ __('Roles') }}
-                    </x-jet-nav-link>
+                    
                 </div>
             </div>
 
@@ -60,6 +65,7 @@
                         @else
                             <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
+
 
                                 <div class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

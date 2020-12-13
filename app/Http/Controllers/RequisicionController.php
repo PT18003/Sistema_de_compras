@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Node\Builder;
 use PhpParser\Node\Stmt\Else_;
 use Svg\Tag\Rect;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionProveedor;
 class RequisicionController extends Controller
 {
     public function index()
@@ -53,17 +54,40 @@ class RequisicionController extends Controller
 
     public function create(Request $request)
     {
-     
+        
         $requisicion = new Requisicion();
         $empleado = Auth::user()->empleado_id;
         $requisicion->creado_id=$empleado;
+        
+        $empleadobuscar = Empleado::find($empleado)->areatrabajo_id;
         $requisiciones = Requisicion::where('estado_req','<','2')->where('creado_id','=',$empleado)->count();
         if($requisiciones >=3)
         {
-            $mensajeError = "No se puedes realizar mas de 3 requisiciones si no han sido aceptadas o enviadas";
-            $empleado = Auth::user()->empleado_id;
-            $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
-            return view('requisicion.index', compact('mensajeError','requisiciones'));
+            if($empleadobuscar==3)
+            {
+                $permiso = 3;
+                $mensajeError = "No se puedes realizar mas de 3 requisiciones si no han sido aceptadas o enviadas";
+                $empleado = Auth::user()->empleado_id;
+                $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
+                return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));
+            }
+            if($empleadobuscar==2)
+            {
+                $permiso = 2;
+                $mensajeError = "No se puedes realizar mas de 3 requisiciones si no han sido aceptadas o enviadas";
+                $empleado = Auth::user()->empleado_id;
+                $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
+                return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));
+            }
+            if($empleadobuscar==1)
+            {
+                $permiso = 1;
+                $mensajeError = "No se puedes realizar mas de 3 requisiciones si no han sido aceptadas o enviadas";
+                $empleado = Auth::user()->empleado_id;
+                $requisiciones = Requisicion::where('creado_id','=',$empleado)->get();
+                return view('requisicion.index', compact('mensajeError','requisiciones','permiso'));
+            }
+           
         }
         else
         {
@@ -97,6 +121,13 @@ class RequisicionController extends Controller
         $requisicion->aceptado_id=$empleado;
         $requisicion->save();
         return redirect()->route('requisiciones.index');
+    }
+    //solo cambiar el destinatario traerlo ccon variable y modificar las vista, pasarle argumento
+    //  asi Mail::to($receivers)->send(new NotificacionProveedor($variable));
+    public function correoProveedor ()
+    {
+        $receivers = 'migue.galdamez@hotmail.com';
+        Mail::to($receivers)->send(new NotificacionProveedor());
     }
     public function ordenar(Request $request, Requisicion $requisicion)
     {

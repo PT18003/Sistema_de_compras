@@ -23,8 +23,17 @@
                         <div class="col">
                           <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una descripcion del producto">
                         </div>
-                        <div class="col">
+                        <div class="form-group col-md-4" >
+                          <input type="number" step="1" min="10" size="10" class="form-control" name="minimo" placeholder="Ingrese la cantidad minima del producto:">
+                        </div>
+                        <br>
+                        <div class="form-group col-md-4">
+                          <input type="number" step="1" min="1" max="300" size="10" class="form-control" name="maximo" placeholder="Ingrese la cantidad maxima del producto:">
+                        </div>
+                        <div>
+                        <div class="form-group col-md-18">
                           <input type="file" class="form-control" name="imagen" accept=".png, .jpg, .jpeg">
+                        </div>
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary">Agregar</button>

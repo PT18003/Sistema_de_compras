@@ -33,10 +33,10 @@ class CatalogoController extends Controller
             $url = Storage::url($photo);
             $fullUrl = asset($url);
             $update = DB::table('catalogos')->where(['id'=>$request->id])
-            ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion, 'imagen'=>$fullUrl]);
+            ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion, 'imagen'=>$fullUrl, 'minimo'=> $request->minimo, 'maximo' => $request->maximo]);
         }else{
             $update = DB::table('catalogos')->where(['id'=>$request->id])
-            ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion]);
+            ->update(['nombre'=>$request->nombre, 'descripcion'=>$request->descripcion, 'minimo'=> $request->minimo, 'maximo' => $request->maximo]);
         }
         return redirect()->route('catalogos.index');
     }
@@ -57,6 +57,8 @@ class CatalogoController extends Controller
         $cat = new Catalogo();
         $cat->nombre = $request->nombre;
         $cat->descripcion = $request->descripcion;
+        $cat->minimo = $request->minimo;
+        $cat->maximo = $request->maximo;
         $cat->imagen = $fullUrl;
         $cat->save();
         return redirect()->route('catalogos.index');

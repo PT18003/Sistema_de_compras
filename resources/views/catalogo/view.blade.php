@@ -18,6 +18,8 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Imagen</th>
+                            <th scope="col">Mínimo</th>
+                            <th scope="col">Máximo</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -28,6 +30,8 @@
                             <th scope="row">{{$item->nombre}}</th>
                             <th scope="row" style="max-width: 300px;">{{$item->descripcion}}</th>
                             <th scope="row" height=150 width=150 ><img src="{{$item->imagen}}" alt=""></th>
+                            <th scope="row" style="max-width: 300px;">{{$item->minimo}}</th>
+                            <th scope="row" style="max-width: 300px;">{{$item->maximo}}</th>
                             <td>
                                 <a href="{{route('catalogos.edit',['catalogo'=>$item->id])}}"><i class="material-icons md-18">edit</i></a>
                                 <a href="{{route('catalogos.destroy',['catalogo'=>$item->id])}}"><i class="material-icons md-18">delete</i></a>

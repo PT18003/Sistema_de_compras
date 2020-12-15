@@ -1,15 +1,5 @@
 <?php
 
-
-
-
-
-
-
-
-
-
-
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -24,12 +14,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => 'f7a6add1d831970d2df00f6a5d510ed199a99a4c',
+    'reference' => 'cb5819c4da2c29d434fe4b3cb4031a6945dc2d9c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -535,12 +525,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => 'f7a6add1d831970d2df00f6a5d510ed199a99a4c',
+      'reference' => 'cb5819c4da2c29d434fe4b3cb4031a6945dc2d9c',
     ),
     'laravel/sanctum' => 
     array (

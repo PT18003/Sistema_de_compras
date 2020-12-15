@@ -18,6 +18,8 @@ class CreateCatalogosTable extends Migration
             $table->string('nombre', 150);
             $table->string('descripcion', 150);
             $table->string('imagen', 300);
+            $table->integer('minimo')->default('0');
+            $table->integer('maximo')->default('0');
             $table->timestamps();
         });
     }

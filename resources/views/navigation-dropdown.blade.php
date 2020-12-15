@@ -46,6 +46,9 @@
                     <x-jet-nav-link href="{{ route('requisiciones.index') }}" :active="request()->routeIs('requisiciones.index')">
                         {{ __('Requisiciones') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('catalogos.index') }}" :active="request()->routeIs('catalogos.index')">
+                        {{ __('Catalogos') }}
+                    </x-jet-nav-link>
 
 {{--                     <x-jet-nav-link href="{{ route('articulosProveedores.index') }}" :active="request()->routeIs('articulosProveedores.index')">
                         {{ __('Articulos proveedores') }}

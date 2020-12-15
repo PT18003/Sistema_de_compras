@@ -25,6 +25,12 @@
                   <div class="col m-3">
                       <input type="text" class="form-control" name="descripcion" value="{{$catalogo[0]->descripcion}}">
                   </div>
+                  <div class="col m-3">
+                      <input type="number" step="1" min="10" class="form-control" name="minimo" value="{{$catalogo[0]->minimo}}">
+                  </div>
+                  <div class="col m-3">
+                      <input type="number" step="1" min="1" max="300" class="form-control" name="maximo" value="{{$catalogo[0]->maximo}}">
+                  </div>
                   <div class="container">
                     </div>
                   <div class="col m-3">

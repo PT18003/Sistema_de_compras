@@ -33,11 +33,23 @@ class EmpleadoController extends Controller
     }
     public function dashboard()
     {
+        $proveedores = Proveedor::get();
         $countempleados = Empleado::count();
         $countareas = AreaTrabajo::count();
         $countproveedores = Proveedor::count();
         $countarticulos = Catalogo::count();
-        return view('dashboard',compact('countempleados','countareas','countproveedores','countarticulos'));
+        $join =DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
+        ->join('articulos_proveedores','detalleRequisicion.id_articuloProveedor','=','articulos_proveedores.id')
+        ->join('proveedores','proveedores.id','=','articulos_proveedores.id_proveedor')
+        ->select('proveedores.id','detalleRequisicion.ordenCompra','requisiciones.id as rid')
+        ->distinct('detalleRequisicion.ordenCompra')
+        ->groupBy('detalleRequisicion.ordenCompra','proveedores.id','requisiciones.id')
+        ->get();
+        
+        $ordenes = DetalleRequisicion::select()->whereNotNull('ordenCompra')->get();
+       
+     
+        return view('dashboard',compact('countempleados','countareas','countproveedores','countarticulos','join','ordenes','proveedores'));
     }
     public function exportPdf()
     {

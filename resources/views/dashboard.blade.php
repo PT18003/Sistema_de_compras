@@ -8,7 +8,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="container card-body ">                  
                 <div class="branding">
-                    <h1 class="mt-4">Bienvenido <b>{{ Auth::user()->name }}</b></h1>
+                    <h1 class="mt-4 text-center">Bienvenido <b>{{ Auth::user()->name }}</b></h1>
                     <a href="{{route('empleados.pdf')}}">Puede descargar una lista de los empleados <b> AQUI</b> </a>
                 
                 </div>
@@ -32,44 +32,68 @@
                         </div>
                         <div id="contentSlider1" data-ride="carousel" data-interval="4000" class="carousel slide my-auto pointer-event">
                             <div role="listbox" class="carousel-inner rounded-lg">
-                                <div class="carousel-item">
-                                    <div class="card bg-transparent border-0">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <div class="card-body text-truncate">
-                                                    <h4 class="mb-0 text-info font-weight-light">Para Sonny</h4>
-                                                    <p class="mt-1">San salvador, Calle la pepita</p>
-                                                    <h3 class="mb-0">$217.00 <i class="mdi mdi-36px mdi-credit-card-outline float-right"></i></h3>
-                                                    <p>Total items: 5</p>
+                                
+                               <?php   $valor = 0; ?>
+                                 @foreach ($join as $row)
+                                                                     
+                                    <?php 
+                                    $monto = 0;
+                                    $suma = 0; 
+                                    $creada = null;
+                                    $proveedor = null;
+                                  
+                                    ?>
+                                    @foreach($ordenes as $orden)                                             
+                                        @if($orden->ordenCompra == $row->ordenCompra)
+                                            <?php
+                                            $suma = $suma + $orden->cantidad;                                               
+                                            $monto = $monto + (round((((100-$orden->articuloProveedor['descuento'])/100)*$orden->articuloProveedor['precio'])*($orden->cantidad),4));
+                                            $creada = $orden->created_at;
+                                            $proveedor = $orden->articuloProveedor->proveedor->nombre;
+                                            $direccion = $orden->articuloProveedor->proveedor->direccion;
+                                            $depto = $orden->articuloProveedor->proveedor->municipio->departamentos->departamento;
+                                            $muni =  $orden->articuloProveedor->proveedor->municipio->municipio;
+                                            ?>
+                                        @endif                                            
+                                    @endforeach
+                                      
+                                    @if($valor == 0)
+                                        <div class="carousel-item active">
+                                         <?php 
+                                        $valor = 1;
+                                        ?>
+                                    
+                                    @else
+                                          <div class="carousel-item">
+                                    @endif
+
+                                  
+                                        <div class="card bg-transparent border-0">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <div class="card-body text-truncate">
+                                                        <h4 class="mb-0 text-info font-weight-light"> {{$proveedor}}  </h4>
+                                                        <p class="mt-1">{{$depto}}, {{$muni}}, <br> {{$direccion}}</p>
+                                                        <p class="mt-1">Orden compra: {{$row->ordenCompra}}</p>
+                                                        <h3 class="mb-0">$  {{$monto}} <i class="mdi mdi-36px mdi-paypal float-right"></i></h3>
+                                                        <p>Total Articulos:   {{$suma}}</p>
+                                                        <span class="text-right"><a class=" badge bg-success text-light text-right" href="{{route('detallerequisiciones.detalle',$row->rid)}}">Consultar requisicion</a></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item active">
-                                    <div class="card bg-transparent border-0">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <div class="card-body text-truncate">
-                                                    <h4 class="mb-0 text-info font-weight-light">Para casa rivas XD</h4>
-                                                    <p class="mt-1">Metrosuelo</p>
-                                                    <h3 class="mb-0">$197.55 <i class="mdi mdi-36px mdi-paypal float-right"></i></h3>
-                                                    <p>Total items: 3</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
                 </div>
                     {{--fin ordenes--}}
-                </div>   
-
-       <div class="row">
+            
                   <div class="col-xl-4 col-md-6 pb-2">
-                        <div class="card  p-0 h-100 shadow-sm">
+                        <div class="card  p-0  shadow-sm">
                             <div class="row h-100 no-gutters rounded flex-nowrap">
                                 <div class="col-auto bg-danger rounded-left">&nbsp;</div>
                                 <div class="col p-3 py-4 text-danger">
@@ -81,7 +105,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 pb-2">
-                        <div class="card  p-0 h-100 shadow-sm">
+                        <div class="card  p-0  shadow-sm">
                             <div class="row h-100 no-gutters rounded flex-nowrap">
                                 <div class="col-auto bg-success rounded-left">&nbsp;</div>
                                 <div class="col p-3 py-4 text-success">
@@ -94,11 +118,11 @@
                     </div>
                     
                 </div>
-
+                   <a href="{{route('correoProveedor')}}">Prueba Correo</a>
             </div>                     
         </div>
     </div> 
-    <a href="{{route('correoProveedor')}}">Enviar Correo</a>
+ 
 </div>
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">

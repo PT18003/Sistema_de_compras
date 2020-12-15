@@ -39,42 +39,72 @@
                        <tr>
                             <td scope="row" class=" d-none">{{$item->id}}</td>
                             <td class="text-center">{{$item->nombre}} </td>
-                            <td class="text-center">
-                            <?php
-                            $suma=0;
-                            foreach ($join as $row)
-                                if($item->id === $row->id)
-                                    $suma=$suma+$row->cantidad
-                            ?>
-                            {{$suma}}
+                               <td class="text-center">
+                                <?php
+                                $monto=0;
+                                $suma=0;
+                                foreach ($join as $row)
+                                {
+                                    if($item->id == $row->id)
+                                    {
+                                        foreach($ordenes as $orden)
+                                        {
+                                            if($orden->ordenCompra == $row->ordenCompra)
+                                            {
+                                                $suma = $suma + $orden->cantidad;
+                                            }
+                                        }
+                                        
+                                    
+                                    }
+                                }
+                                ?>
+                                {{$suma}}
                                 
-                            </td>
+                                    
+                                </td>
 
                             <td >
-                            @foreach ($join as $row)
-                                @if($item->id === $row->id)
-                                        <h6>
-                                      
-                                        <b>Monto: </b>
-                                        <?php
-                                          
-                                          $monto = (round((((100-$row->descuento)/100)*$row->precio)*($row->cantidad),4));
-                                        ?>{{$monto}}
-                                        </h6>
-                                        <h6>
-                                             <b>Orden de compra: </b> {{$row->ordenCompra}}
-                                        </h6>
-                                        <h6>
-                                            <b>Articulos: </b> {{$row->cantidad}}
-                                        </h6>
-                                        <h6>
-                                            <b>Creada: </b>{{$row->updated_at}}
+                              @foreach ($join as $row)
+                                @if($item->id == $row->id)
+                                
+                                    
+                                          <h6><b>Monto: </b>
+                                       
+                                            <?php 
+                                            $monto = 0;
+                                            $suma = 0; 
+                                            $creada = null;
+                                            ?>
+                                            @foreach($ordenes as $orden)
                                              
-                                        </h6>
-                                        <br>
-                                        
+                                                @if($orden->ordenCompra == $row->ordenCompra)
+                                                    <?php
+                                                    $suma = $suma + $orden->cantidad;
+                                                
+                                                    $monto = $monto + (round((((100-$orden->articuloProveedor['descuento'])/100)*$orden->articuloProveedor['precio'])*($orden->cantidad),4));
+                                                    $creada = $orden->created_at;
+                                                    ?>
+                                                  
+                                                 
+                                                @endif
+                                             
+                                            @endforeach
+                                            {{$monto}}
+                                            </h6>
+                                            <h6>
+                                            <b>Orden de compra: </b>
+                                            {{$row->ordenCompra}}</h6>
+                                            <h6><b>Articulos: </b>
+                                             {{$suma}}</h6>
+                                            <h6><b>Fecha creada: </b>
+                                            {{$creada}}</h6>
+                                             
+                                       
+                                      <br>
                                 @endif    
                             @endforeach
+                  
                             </td>
                        
                         

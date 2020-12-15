@@ -35,11 +35,20 @@
                             $monto=0;
                             $suma=0;
                             foreach ($join as $row)
+                            {
                                 if($item->id == $row->id)
                                 {
-                                    $suma=$suma+$row->cantidad;
+                                    foreach($ordenes as $orden)
+                                    {
+                                        if($orden->ordenCompra == $row->ordenCompra)
+                                        {
+                                            $suma = $suma + $orden->cantidad;
+                                        }
+                                    }
+                                    
                                   
                                 }
+                            }
                             ?>
                             {{$suma}}
                             
@@ -53,16 +62,37 @@
                                      <div class="card mt-2 mb-4 card-block">
                                         <div class="card-body">
                                         <b>Monto: </b>
-                                        <?php
-                                          $monto = $monto +  (round((((100-$row->descuento)/100)*$row->precio)*($row->cantidad),4));
-                                        ?>
-                                        {{$monto}}
-                                             <b>Orden de compra: </b> {{$row->ordenCompra}}
-                                            <b>Articulos: </b> {{$row->cantidad}}
-                                            <b>Creada: </b>{{$row->updated_at}}
-                                              <span class="text-right"><a class=" badge bg-success text-light text-right" href="{{route('detallerequisiciones.detalle',$row->rid)}}">Consultar requisicion</a></span>
-                                          
-
+                                       
+                                            <?php 
+                                            $monto = 0;
+                                            $suma = 0; 
+                                            $creada = null;
+                                            ?>
+                                            @foreach($ordenes as $orden)
+                                             
+                                                @if($orden->ordenCompra == $row->ordenCompra)
+                                                    <?php
+                                                    $suma = $suma + $orden->cantidad;
+                                                
+                                                    $monto = $monto + (round((((100-$orden->articuloProveedor['descuento'])/100)*$orden->articuloProveedor['precio'])*($orden->cantidad),4));
+                                                    $creada = $orden->created_at;
+                                                    ?>
+                                                  
+                                                 
+                                                @endif
+                                             
+                                            @endforeach
+                                            {{$monto}}
+                                            <b>Orden de compra: </b>
+                                            {{$row->ordenCompra}}
+                                            <b>Articulos: </b>
+                                             {{$suma}}
+                                            <b>Fecha creada: </b>
+                                            {{$creada}}
+                                             <span class="text-right"><a class=" badge bg-success text-light text-right" href="{{route('detallerequisiciones.detalle',$row->rid)}}">Consultar requisicion</a></span>
+                                           
+                                       
+                                       
                                         </div>
                                     </div>
                                 @endif    

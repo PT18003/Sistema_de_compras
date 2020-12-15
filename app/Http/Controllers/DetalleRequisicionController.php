@@ -16,6 +16,7 @@ use App\Models\Empleado;
 use App\Models\Proveedor;
 
 use Barryvdh\DomPDF\Facade as PDF;
+
 class DetalleRequisicionController extends Controller
 {
     public function index(Requisicion $requisicion)
@@ -239,27 +240,34 @@ class DetalleRequisicionController extends Controller
         $join =DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
         ->join('articulos_proveedores','detalleRequisicion.id_articuloProveedor','=','articulos_proveedores.id')
         ->join('proveedores','proveedores.id','=','articulos_proveedores.id_proveedor')
-        ->select('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id as rid','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
-        ->groupBy('detalleRequisicion.ordenCompra','proveedores.id','detalleRequisicion.cantidad','requisiciones.id','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->select('proveedores.id','detalleRequisicion.ordenCompra','requisiciones.id as rid')
+        ->distinct('detalleRequisicion.ordenCompra')
+        ->groupBy('detalleRequisicion.ordenCompra','proveedores.id','requisiciones.id')
         ->get();
         
-        
-        return view('reportes.proveedoresC', compact('proveedores','join'));
+        $ordenes = DetalleRequisicion::select()->whereNotNull('ordenCompra')->get();
+  
+        return view('reportes.proveedoresC', compact('proveedores','join','ordenes'));
+        //
+        //return $join;
     }
     public function proveedorCPdf()
     {
+      
         $proveedores = Proveedor::get();
         $join =DB::table('requisiciones')->join('detalleRequisicion','requisiciones.id','=','detalleRequisicion.requisicion_id')
         ->join('articulos_proveedores','detalleRequisicion.id_articuloProveedor','=','articulos_proveedores.id')
         ->join('proveedores','proveedores.id','=','articulos_proveedores.id_proveedor')
-        ->select('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id as rid','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
-        ->groupBy('proveedores.id','detalleRequisicion.ordenCompra','detalleRequisicion.cantidad','requisiciones.id','detalleRequisicion.updated_at','articulos_proveedores.precio','articulos_proveedores.descuento')
+        ->select('proveedores.id','detalleRequisicion.ordenCompra','requisiciones.id as rid')
+        ->distinct('detalleRequisicion.ordenCompra')
+        ->groupBy('detalleRequisicion.ordenCompra','proveedores.id','requisiciones.id')
         ->get();
-        
-       
+      
+        $ordenes = DetalleRequisicion::select()->whereNotNull('ordenCompra')->get();
+ 
         $name = 'reporte-ordenes-proveedores.pdf';
       
-        $pdf = PDF::loadView('pdf.proveedoresCPdf',  compact('proveedores','join'));
+        $pdf = PDF::loadView('pdf.proveedoresCPdf',  compact('proveedores','join','ordenes'));
         return $pdf->download($name);
     }
    
